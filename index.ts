@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
-/* eslint-disable import/no-internal-modules */
-import { App, LogLevel, subtype, type BotMessageEvent, type BlockAction } from '@slack/bolt';
+import { App, LogLevel } from '@slack/bolt';
 
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
@@ -11,55 +8,43 @@ const app = new App({
     logLevel: LogLevel.DEBUG,
 });
 
+app.event("app_home_opened", async ({ event, logger }) => { logger.info(event) });
+
+const channels = {
+    superDevLog: process.env.SUPER_DEV_LOG_CHANNEL || "",
+    dev: "C074B4QVBS8",
+    logging: "C074B4VHJ76",
+    market: "C06GA0PSXC5",
+    craftery: "C06P09REBK4",
+    smallberryFarms: "C06K8TDSFS5",
+    spookTreeForest: "C06JF3MERUP",
+    theRiverSploosh: "C06KJCY58GY",
+    hillRockMine: "C06KJDF425N",
+    townSquare: "C06R09H8GQ6",
+};
+
+let env = process.env.NODE_ENV
+
+let lchannel;
+if (env === "production") {
+    env = "beautiful";
+    lchannel = channels.logging!;
+} else if (env === "development") {
+    env = "lush";
+    lchannel = channels.dev!;
+} else {
+    env = "mysterious";
+    lchannel = channels.superDevLog!;
+}
 
 (async () => {
     // Start your app
     await app.start(Number(process.env.PORT) || 3000);
 
     console.log('⚡️ Bolt app is running!');
+
+    await app.client.chat.postMessage({
+        channel: lchannel,
+        text: `The old man todles off in the direction of the ${env} forest. :evergreen_tree: :axe:`,
+    });
 })();
-
-// subscribe to 'app_mention' event in your App config
-// need app_mentions:read and chat:write scopes
-app.event('app_mention', async ({ event, context, client, say }) => {
-    console.log("triggered app_mention event");
-    try {
-        console.log("triggered app_mention event");
-        await say({
-            "blocks": [
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": `Thanks for the mention <@${event.user}>! Here's a button`
-                    },
-                    "accessory": {
-                        "type": "button",
-                        "text": {
-                            "type": "plain_text",
-                            "text": "Button",
-                            "emoji": true
-                        },
-                        "value": "click_me_123",
-                        "action_id": "first_button"
-                    }
-                }
-            ]
-        });
-    }
-    catch (error) {
-        console.error(error);
-    }
-});
-
-// This will match any message that contains 👋
-app.message(':wave:', async ({ message, say }) => {
-    console.log("triggered wave event");
-    // Handle only newly posted messages here
-    if (message.subtype === undefined
-        || message.subtype === 'bot_message'
-        || message.subtype === 'file_share'
-        || message.subtype === 'thread_broadcast') {
-        await say(`Hello, <@${message.user}>`);
-    }
-});
