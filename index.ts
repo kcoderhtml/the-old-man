@@ -1,4 +1,7 @@
 import { App, LogLevel } from '@slack/bolt';
+import { Elysia } from 'elysia';
+
+import { welcome } from './welcome';
 
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
@@ -6,12 +9,6 @@ const app = new App({
     appToken: process.env.SLACK_APP_TOKEN,
     logLevel: LogLevel.INFO,
     port: Number(process.env.PORT) || 3000,
-});
-
-// Listens to incoming messages that contain "hello"
-app.message('hello', async ({ message, say }) => {
-    // say() sends a message to the channel where the event was triggered
-    await say(`Hey there!`);
 });
 
 // listen for new members joining the market - town square channels
@@ -62,9 +59,42 @@ if (env === "production") {
 
         console.log('⚡️ Bolt app is running!');
 
+        // setup endpoint for Elysia
+        const elysia = new Elysia()
+            .post('/', async ({ request }) => {
+                const body: { userID: string } = await request.json();
+                const bearer = request.headers.get('Authorization');
+                if (!bearer || bearer !== process.env.API_BEARER) {
+                    console.error('Bearer token is missing or incorrect', bearer);
+                    return new Response(JSON.stringify({ ok: false, error: "Bearer token is missing or incorrect" }), {
+                        status: 403,
+                        statusText: 'Forbidden',
+                        headers: {
+                            'Content-Type': 'text/plain',
+                        },
+                    });
+                }
+
+                try {
+                    await welcome(body.userID, app.client);
+                    return JSON.stringify({ ok: true, userID: body.userID });
+                } catch (error) {
+                    console.error('Error parsing JSON:', error);
+                    return new Response(null, {
+                        status: 400,
+                        statusText: 'Bad Request',
+                        headers: {
+                            'Content-Type': 'text/plain',
+                        },
+                    });
+                }
+            }).listen(process.env.ELYSIA_PORT || 3001);
+
+        console.log('🦊 Elysia is running!');
+
         await app.client.chat.postMessage({
             channel: lchannel,
-            text: `The old man todles off in the direction of the ${env} forest. :evergreen_tree: :axe:`,
+            text: `The old man toddles off in the direction of the ${env} forest. :evergreen_tree: :axe:`,
         });
     } catch (error) {
         console.error(error);

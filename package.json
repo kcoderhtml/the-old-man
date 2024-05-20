@@ -9,6 +9,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@slack/bolt": "^3.18.0"
+    "@elysiajs/bearer": "^1.0.2",
+    "@slack/bolt": "^3.18.0",
+    "elysia": "^1.0.20"
   }
 }
