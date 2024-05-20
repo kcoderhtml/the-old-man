@@ -45,10 +45,10 @@ let env = process.env.NODE_ENV
 
 let lchannel;
 if (env === "production") {
-    env = "beautiful";
+    env = "tall";
     lchannel = channels.logging!;
 } else if (env === "development") {
-    env = "lush";
+    env = "young";
     lchannel = channels.dev!;
 } else {
     env = "mysterious";
