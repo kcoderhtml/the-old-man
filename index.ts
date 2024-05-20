@@ -14,17 +14,31 @@ app.message('hello', async ({ message, say }) => {
     await say(`Hey there!`);
 });
 
+// listen for new members joining the market - town square channels
+app.event('member_joined_channel', async ({ event, client }) => {
+    for (const [key, value] of Object.entries(channels.joinMonitor)) {
+        if (event.channel === value) {
+            await client.chat.postMessage({
+                channel: channels.superDevLog!,
+                text: `A new member <@${event.user}> has joined the ${key} channel!`,
+            });
+        }
+    }
+});
+
 const channels = {
     superDevLog: process.env.SUPER_DEV_LOG_CHANNEL || "",
     dev: "C074B4QVBS8",
     logging: "C074B4VHJ76",
-    market: "C06GA0PSXC5",
-    craftery: "C06P09REBK4",
-    smallberryFarms: "C06K8TDSFS5",
-    spookTreeForest: "C06JF3MERUP",
-    theRiverSploosh: "C06KJCY58GY",
-    hillRockMine: "C06KJDF425N",
-    townSquare: "C06R09H8GQ6",
+    joinMonitor: {
+        market: "C06GA0PSXC5",
+        craftery: "C06P09REBK4",
+        smallberryFarms: "C06K8TDSFS5",
+        spookTreeForest: "C06JF3MERUP",
+        theRiverSploosh: "C06KJCY58GY",
+        hillRockMine: "C06KJDF425N",
+        townSquare: "C06R09H8GQ6",
+    },
 };
 
 let env = process.env.NODE_ENV
