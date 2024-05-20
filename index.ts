@@ -4,11 +4,15 @@ const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
     signingSecret: process.env.SLACK_SIGNING_SECRET,
     appToken: process.env.SLACK_APP_TOKEN,
-    socketMode: true,
-    logLevel: LogLevel.DEBUG,
+    logLevel: LogLevel.INFO,
+    port: Number(process.env.PORT) || 3000,
 });
 
-app.event("app_home_opened", async ({ event, logger }) => { logger.info(event) });
+// Listens to incoming messages that contain "hello"
+app.message('hello', async ({ message, say }) => {
+    // say() sends a message to the channel where the event was triggered
+    await say(`Hey there!`);
+});
 
 const channels = {
     superDevLog: process.env.SUPER_DEV_LOG_CHANNEL || "",
@@ -38,13 +42,17 @@ if (env === "production") {
 }
 
 (async () => {
-    // Start your app
-    await app.start(Number(process.env.PORT) || 3000);
+    try {
+        // Start your app
+        await app.start(Number(process.env.PORT) || 3000);
 
-    console.log('⚡️ Bolt app is running!');
+        console.log('⚡️ Bolt app is running!');
 
-    await app.client.chat.postMessage({
-        channel: lchannel,
-        text: `The old man todles off in the direction of the ${env} forest. :evergreen_tree: :axe:`,
-    });
+        await app.client.chat.postMessage({
+            channel: lchannel,
+            text: `The old man todles off in the direction of the ${env} forest. :evergreen_tree: :axe:`,
+        });
+    } catch (error) {
+        console.error(error);
+    }
 })();
