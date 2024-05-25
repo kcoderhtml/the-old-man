@@ -3,26 +3,6 @@ import { Elysia } from 'elysia';
 
 import { welcome, updateNetWorth } from './welcome';
 
-const app = new App({
-    token: process.env.SLACK_BOT_TOKEN,
-    signingSecret: process.env.SLACK_SIGNING_SECRET,
-    appToken: process.env.SLACK_APP_TOKEN,
-    logLevel: LogLevel.INFO,
-    port: Number(process.env.PORT) || 3000,
-});
-
-// listen for new members joining the market - town square channels
-app.event('member_joined_channel', async ({ event, client }) => {
-    for (const [key, value] of Object.entries(channels.joinMonitor)) {
-        if (event.channel === value) {
-            await client.chat.postMessage({
-                channel: channels.superDevLog!,
-                text: `A new member <@${event.user}> has joined the ${key} channel!`,
-            });
-        }
-    }
-});
-
 const channels = {
     superDevLog: process.env.SUPER_DEV_LOG_CHANNEL || "",
     dev: "C074B4QVBS8",
@@ -52,6 +32,26 @@ if (env === "production") {
     lchannel = channels.superDevLog!;
 }
 
+const app = new App({
+    token: process.env.SLACK_BOT_TOKEN,
+    signingSecret: process.env.SLACK_SIGNING_SECRET,
+    appToken: process.env.SLACK_APP_TOKEN,
+    logLevel: LogLevel.INFO,
+    port: Number(process.env.PORT) || 3000,
+});
+
+// listen for new members joining the market - town square channels
+app.event('member_joined_channel', async ({ event, client }) => {
+    for (const [key, value] of Object.entries(channels.joinMonitor)) {
+        if (event.channel === value) {
+            await client.chat.postMessage({
+                channel: channels.superDevLog!,
+                text: `A new member <@${event.user}> has joined the ${key} channel!`,
+            });
+        }
+    }
+});
+
 (async () => {
     try {
         // Start your app
@@ -79,6 +79,11 @@ if (env === "production") {
                 }
 
                 try {
+                    await app.client.chat.postMessage({
+                        channel: channels.superDevLog!,
+                        text: `Elysia has been summoned for <@${body.userID}>! :sparkles:; Summoning <@${process.env.SLACK_BOT_ID}> to welcome them... :wave:`,
+                    });
+
                     await welcome(body.userID, app.client);
                     return JSON.stringify({ ok: true, userID: body.userID });
                 } catch (error) {
