@@ -16,18 +16,36 @@ let bagData: {
 }[]
 
 export async function welcome(userID: string, client: WebClient) {
+    // get the user's net worth
+    const netWorth = await getUserNetWorth(userID);
+
     // send a welcome message to the user
     await client.chat.postMessage({
         channel: userID,
         text: "Welcome to Bag! I'm the old man who toddles",
     });
 
-    // get the user's net worth
-    const netWorth = await getUserNetWorth(userID);
-    await client.chat.postMessage({
-        channel: userID,
-        text: `Your net worth is ${netWorth}`,
-    });
+    if (netWorth === 0) {
+        await client.chat.postMessage({
+            channel: userID,
+            text: "You don't have anything in your bag yet. I'll help you learn more about bag!",
+        });
+    } else if (netWorth < 500) {
+        await client.chat.postMessage({
+            channel: userID,
+            text: "You have a few things in your bag, but you're still pretty poor. I'll help you learn more about bag!",
+        });
+    } else {
+        await client.chat.postMessage({
+            channel: userID,
+            text: "You have a lot of things in your bag! Your net worth is " + netWorth + " :-gp:",
+        });
+
+        await client.chat.postMessage({
+            channel: userID,
+            text: "You seem to really care about Bag so let me impart something my father and his father before him have handed down to me: 'The Bag Manifesto: A bag is a bag is a bag. But a bag is not a bag if it's not a bag. So bag a bag and bag it well.'",
+        });
+    }
 }
 
 export async function clear(userID: string, client: WebClient) {
