@@ -1,7 +1,7 @@
 import { App, LogLevel } from '@slack/bolt';
 import { Elysia } from 'elysia';
 
-import { welcome } from './welcome';
+import { welcome, updateNetWorth } from './welcome';
 
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
@@ -58,6 +58,9 @@ if (env === "production") {
         await app.start(Number(process.env.PORT) || 3000);
 
         console.log('⚡️ Bolt app is running!');
+
+        console.log('💰 Updating Bag Data...');
+        await updateNetWorth();
 
         // setup endpoint for Elysia
         const elysia = new Elysia()
