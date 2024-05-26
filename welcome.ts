@@ -87,7 +87,7 @@ async function getUserNetWorth(userID: string) {
     return netWorth;
 }
 
-export async function updateNetWorth() {
+export async function updateItemIdData() {
     // check if the net worth file exists
     const file = Bun.file("data/items.yaml");
 

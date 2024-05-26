@@ -1,7 +1,7 @@
 import { App, LogLevel } from '@slack/bolt';
 import { Elysia } from 'elysia';
 
-import { welcome, updateNetWorth } from './welcome';
+import { welcome, updateItemIdData } from './welcome';
 
 const channels = {
     superDevLog: process.env.SUPER_DEV_LOG_CHANNEL || "",
@@ -60,7 +60,7 @@ app.event('member_joined_channel', async ({ event, client }) => {
         console.log('⚡️ Bolt app is running!');
 
         console.log('💰 Updating Bag Data...');
-        await updateNetWorth();
+        await updateItemIdData();
 
         // setup endpoint for Elysia
         const elysia = new Elysia()
