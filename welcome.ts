@@ -16,35 +16,34 @@ let bagData: {
 }[]
 
 export async function welcome(userID: string, client: WebClient) {
+    if (process.env.NODE_ENV === undefined) {
+        clear(userID, client);
+        // clear the metadata
+        await updateUserMetadata(userID, JSON.stringify({ onboarding: null, onboardingStep: null }));
+    }
     // get the user's net worth
     const netWorth = await getUserNetWorth(userID);
 
-    // send a welcome message to the user
-    await client.chat.postMessage({
-        channel: userID,
-        text: "Welcome to Bag! I'm the old man who toddles",
-    });
+    // pull the onboarding file
+    const onboarding = await Bun.file("bag/onboarding-workflow.json").json();
 
-    if (netWorth === 0) {
-        await client.chat.postMessage({
-            channel: userID,
-            text: "You don't have anything in your bag yet. I'll help you learn more about bag!",
-        });
-    } else if (netWorth < 500) {
-        await client.chat.postMessage({
-            channel: userID,
-            text: "You have a few things in your bag, but you're still pretty poor. I'll help you learn more about bag!",
-        });
+    // get the user's metadata
+    const metadata = await getUserMetadata(userID);
+
+    // check if the user has started the onboarding process
+    if (metadata.onboarding === "completed" || metadata.onboarding === "started") {
+        // if they have, log an error noting that they've already completed the onboarding process
+        console.log(`❌ User ${userID} has already completed / started the onboarding process 🎉`);
+        return "User has already completed / started the onboarding process 🎉";
     } else {
+        // if they haven't, send the first message
         await client.chat.postMessage({
             channel: userID,
-            text: "You have a lot of things in your bag! Your net worth is " + netWorth + " :-gp:",
+            text: onboarding.introduction.text,
         });
 
-        await client.chat.postMessage({
-            channel: userID,
-            text: "You seem to really care about Bag so let me impart something my father and his father before him have handed down to me: 'The Bag Manifesto: A bag is a bag is a bag. But a bag is not a bag if it's not a bag. So bag a bag and bag it well.'",
-        });
+        // update the user's metadata to reflect that they've started the onboarding process
+        await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: "introduction" }));
     }
 }
 
@@ -124,4 +123,16 @@ export async function updateItemIdData() {
     }
 
     bagData = parse(await Bun.file("data/items.yaml").text());
+}
+
+async function getUserMetadata(userID: string) {
+    // get the user's metadata
+    // run bagtest.js with node to see the output
+    return (await $`node bag/get-identity-metadata.js ${userID}`).json();
+}
+
+async function updateUserMetadata(userID: string, metadata: string) {
+    // update the user's metadata
+    // run bagtest.js with node to see the output
+    return (await $`node bag/update-identity-metadata.js ${userID} ${metadata}`).json();
 }
