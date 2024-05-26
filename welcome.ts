@@ -44,7 +44,61 @@ export async function welcome(userID: string, client: WebClient) {
 
         // update the user's metadata to reflect that they've started the onboarding process
         await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: "introduction" }));
+        onboardingStep(userID, client);
     }
+}
+
+export async function onboardingStep(userID: string, client: WebClient, nextStep?: string) {
+    const onboarding = await Bun.file("bag/onboarding-workflow.json").json();
+    const metadata = await getUserMetadata(userID);
+    let step: string
+    if (nextStep) {
+        step = nextStep
+    } else {
+        // get the user's metadata
+        step = onboarding[metadata.onboardingStep].next;
+    }
+
+    if (onboarding[metadata.onboardingStep].check !== undefined && onboarding[metadata.onboardingStep].check.length > 0) {
+        const userNetWorth = await getUserNetWorth(userID);
+        const items = await $`node bag/get-user-items.js ${userID}`.json();
+        for (const checkItem of onboarding[metadata.onboardingStep].check) {
+            if (checkItem.netWorth !== undefined) {
+                if (checkItem.opperator === "less") {
+                    if (userNetWorth < checkItem.netWorth) {
+                        await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: checkItem.next }));
+                        onboardingStep(userID, client, checkItem.next);
+                        return
+                    }
+                }
+                if (checkItem.opperator === "greater") {
+                    if (userNetWorth > checkItem.netWorth) {
+                        await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: checkItem.next }));
+                        onboardingStep(userID, client, checkItem.next);
+                        return
+                    }
+                }
+            }
+        }
+    }
+
+    if (step === "completed") {
+        // if the user has completed the onboarding process, log an error
+        console.log(`❌ User ${userID} has already completed the onboarding process 🎉`);
+        return
+    } else {
+        // if they haven't, send the next message
+        await client.chat.postMessage({
+            channel: userID,
+            text: onboarding[step].text,
+        });
+
+        // update the user's metadata to reflect the next step
+        await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: step }));
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    onboardingStep(userID, client, onboarding[step].next);
 }
 
 export async function clear(userID: string, client: WebClient) {
