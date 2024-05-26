@@ -91,7 +91,8 @@
 				"name": "gp",
 				"quantity": 85
 			}
-		]
+		],
+		"next": "completed"
 	},
 	"lvl1": {
 		"text": "Well, shiver me timbers! You've already been doing some huntin' and gatherin', haven't ya? Good on ya! Now, let's see if you're ready for the next level. I'll give you a hand with that.",
@@ -116,7 +117,8 @@
 				"name": "gp",
 				"quantity": 85
 			}
-		]
+		],
+		"next": "completed"
 	},
 	"lvl2": {
 		"text": "Well, shiver me timbers! You're quite the seasoned adventurer, aren't ya? You've been gatherin', craftin', and tradin' like a pro! Now, leme just give you the quick rundown to make sure you know all the bells and whistles of this here shiny, {puasee, :thincc:} well i do believe it ain't shiny no more, you get the point though.",
@@ -137,6 +139,7 @@
 				"name": "gp",
 				"quantity": 65
 			}
-		]
+		],
+		"next": "completed"
 	}
 }
