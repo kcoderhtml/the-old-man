@@ -27,11 +27,11 @@
 		"text": "Well, shiver me timbers! You're just startin' out, aren't ya? No worries, we all start somewhere. Let's get you up to speed with the basics. First things first, you gotta gather some thingermajigs. Leme give you a hand with that.",
 		"give": [
 			{
-				"name": "axe",
+				"name": "Axe",
 				"quantity": 10
 			},
 			{
-				"name": "pickaxe",
+				"name": "Pickaxe",
 				"quantity": 10
 			}
 		],
