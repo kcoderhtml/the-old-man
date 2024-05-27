@@ -51,19 +51,16 @@
 			{
 				"resource": "wood",
 				"quantity": 10,
-				"opperator": "greater",
 				"failMessage": "You need to gather more wood! At least 10 pieces."
 			},
 			{
 				"resource": "iron",
 				"quantity": 10,
-				"opperator": "greater",
 				"failMessage": "You need to gather more iron! At least 10 pieces."
 			},
 			{
 				"resource": "stone",
 				"quantity": 8,
-				"opperator": "greater",
 				"failMessage": "You need to gather more stone! At least 8 pieces."
 			}
 		],
@@ -74,7 +71,6 @@
 		"check": [
 			{
 				"item": "furnace",
-				"opperator": "greater",
 				"failMessage": "You need to craft a furnace! Type `/item :-furnace:` to see the recipe."
 			}
 		],
