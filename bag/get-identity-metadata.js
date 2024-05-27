@@ -7,10 +7,9 @@ const bagApp = await Bag.connect({
 	key: process.env.BAG_APP_TOKEN,
 });
 
-const identity = await bagApp.getIdentity(
-	JSON.stringify({
-		identityId: identityId,
-	})
-);
+const identity = await bagApp.updateIdentityMetadata({
+	identityId: identityId,
+	metadata: JSON.stringify({}),
+});
 
-console.log(JSON.stringify(identity.metadata, null, 2));
+console.log(JSON.stringify(identity.metadata));

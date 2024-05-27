@@ -36,4 +36,4 @@ const result = await bagApp.updateIdentityMetadata({
 	metadata: JSON.stringify(newMetadata),
 });
 
-console.log(JSON.stringify({ ok: true, metadata: result.metadata }));
+console.log(JSON.stringify(result.metadata));

@@ -78,6 +78,17 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
                         return
                     }
                 }
+            } else if (checkItem.resource !== undefined) {
+                if (items.find((item: any) => item.name.toLowerCase() === checkItem.resource) !== undefined) {
+                    // if the user has required amount of the resource, move to the next step
+                    if (items.find((item: any) => item.name.toLowerCase() === checkItem.resource).quantity < checkItem.quantity) {
+                        client.chat.postMessage({
+                            channel: userID,
+                            text: checkItem.failMessage,
+                        });
+                        return
+                    }
+                }
             }
         }
     }
