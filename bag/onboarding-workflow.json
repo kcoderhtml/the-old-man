@@ -67,7 +67,7 @@
 		"next": "lvl0-4"
 	},
 	"lvl0-4": {
-		"text": "Well done! You've gathered enough resources to craft your first item. Type `/item :-furnace:` in the chat to see how to make a furnace. Once you've seen the recipe, type `/craft` followed by the items needede to make it. Once you've crafted the furnace, let me know and i'll tell you about the next piece of bag.",
+		"text": "Well done! You've gathered enough resources to craft your first item. Type `/item :-furnace:` in the chat to see how to make a furnace. Once you've seen the recipe, type `/craft` followed by the items needed to make it. Once you've crafted the furnace, let me know and i'll tell you about the next piece of bag.",
 		"check": [
 			{
 				"item": "furnace",
