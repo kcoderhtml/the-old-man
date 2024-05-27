@@ -93,6 +93,12 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
         }
     }
 
+    if (onboarding[step].give !== undefined && onboarding[step].give.length > 0) {
+        for (const item of onboarding[step].give) {
+            await $`node bag/give-item.js ${userID} ${item.name} ${item.quantity}`;
+        }
+    }
+
     if (step === "completed") {
         // if the user has completed the onboarding process, log an error
         console.log(`❌ User ${userID} has already completed the onboarding process 🎉`);
