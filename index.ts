@@ -52,6 +52,12 @@ app.event('member_joined_channel', async ({ event, client }) => {
     }
 });
 
+// liste for any message
+app.message(async ({ message, say }) => {
+    // @ts-ignore
+    await onboardingStep(message.user, app.client);
+});
+
 (async () => {
     try {
         // Start your app
