@@ -59,6 +59,16 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
         step = onboarding[metadata.onboardingStep].next;
     }
 
+    if (step === "completed") {
+        // if the user has completed the onboarding process, log an error
+        console.log(`❌ User ${userID} has already completed the onboarding process`);
+        client.chat.postMessage({
+            channel: userID,
+            text: "Ummm... Welcome back? You've already completed the onboarding process though soo... :shrug-magic_wand: ",
+        });
+        return
+    }
+
     if (onboarding[metadata.onboardingStep].check !== undefined && onboarding[metadata.onboardingStep].check.length > 0) {
         const userNetWorth = await getUserNetWorth(userID);
         const items = await $`node bag/get-user-items.js ${userID}`.json();
@@ -99,20 +109,15 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
         }
     }
 
-    if (step === "completed") {
-        // if the user has completed the onboarding process, log an error
-        console.log(`❌ User ${userID} has already completed the onboarding process 🎉`);
-        return
-    } else {
-        // if they haven't, send the next message
-        await client.chat.postMessage({
-            channel: userID,
-            text: onboarding[step].text,
-        });
+    // if they haven't, send the next message
+    await client.chat.postMessage({
+        channel: userID,
+        text: onboarding[step].text,
+    });
 
-        // update the user's metadata to reflect the next step
-        await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: step }));
-    }
+    // update the user's metadata to reflect the next step
+    await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: step }));
+
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
     onboardingStep(userID, client, onboarding[step].next);
