@@ -96,7 +96,7 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
                 console.log("Checking resource", checkItem.resource, checkItem.quantity);
                 if (items.find((item: any) => item.name.toLowerCase() === checkItem.resource) !== undefined) {
                     // if the user has required amount of the resource, move to the next step
-                    if (items.find((item: any) => item.name.toLowerCase() === checkItem.resource).quantity < checkItem.quantity) {
+                    if (items.find((item: any) => item.name.toLowerCase() === checkItem.resource).quantity + 1 < checkItem.quantity) {
                         client.chat.postMessage({
                             channel: userID,
                             text: checkItem.failMessage,
