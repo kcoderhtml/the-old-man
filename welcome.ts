@@ -226,7 +226,7 @@ async function getUserMetadata(userID: string) {
     // get the user's metadata
     // run bagtest.js with node to see the output
     const metadata = (await $`node bag/get-identity-metadata.js ${userID}`).json()
-    return Object.keys(metadata).length !== 0 ? metadata : { onboarding: "started", onboardingStep: "introduction" }
+    return Object.keys(metadata).length !== 0 ? metadata : { onboarding: "null", onboardingStep: "null" }
 }
 
 async function updateUserMetadata(userID: string, metadata: string) {
