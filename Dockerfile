@@ -33,8 +33,12 @@ COPY --from=prerelease /usr/src/app/package.json .
 RUN mkdir -p data
 RUN chown -R bun:bun data
 # pull the items.yaml file from the bag
-RUN cd data && wget wget https://raw.githubusercontent.com/rivques/bag-manifest/production/items.yaml
-RUN chown -R bun:bun data/items.yaml
+# install wget
+USER root
+RUN apt-get update && apt-get install -y wget
+# pull the items.yaml file from the bag
+USER bun
+RUN cd data && wget https://raw.githubusercontent.com/rivques/bag-manifest/production/items.yaml && chown -R bun:bun items.yaml
 
 # run the app
 USER bun
