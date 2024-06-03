@@ -49,19 +49,19 @@
 		"text": "Now let's see what you've gathered. You can type `/bag me` in the chat to check your inventory, but i'll just take a peek for now...",
 		"check": [
 			{
-				"resource": "wood",
+				"resource": "log",
 				"quantity": 10,
-				"failMessage": "You need to gather more wood! At least 10 pieces."
+				"failMessage": "You need to gather more logs! At least {xmore} more hunks."
 			},
 			{
-				"resource": "iron",
+				"resource": "iron_ore",
 				"quantity": 10,
-				"failMessage": "You need to gather more iron! At least 10 pieces."
+				"failMessage": "You need to gather more iron ore! At least {xmore} more oreos."
 			},
 			{
-				"resource": "stone",
+				"resource": "rock",
 				"quantity": 8,
-				"failMessage": "You need to gather more stone! At least 8 pieces."
+				"failMessage": "You need to gather more rocks! At least {xmore} more of them."
 			}
 		],
 		"next": "lvl0-4"
