@@ -28,11 +28,11 @@
 		"give": [
 			{
 				"name": "Axe",
-				"quantity": 1
+				"quantity": 4
 			},
 			{
 				"name": "Pickaxe",
-				"quantity": 1
+				"quantity": 3
 			}
 		],
 		"next": "lvl0-1"
