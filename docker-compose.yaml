@@ -1,0 +1,17 @@
+name: the-old-man
+services:
+  the-old-man:
+    ports:
+      - 3000:3000
+      - 3001:3001
+    image: kcoderhtml/the-old-man:latest
+    restart: unless-stopped
+    environment:
+      - SLACK_BOT_TOKEN=xoxb-xxxx-xxxxxxxxx-xxxxxxxxxxxxxxx
+      - SLACK_SIGNING_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - SLACK_APP_TOKEN=xapp-x-xxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      - SLACK_BOT_ID=xxxxxxxxx
+      - SUPER_DEV_LOG_CHANNEL=xxxxxxxxx
+      - API_BEARER=smthingsupersecret
+      - BAG_APP_TOKEN=xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
+      - BAG_APP_ID=xx
