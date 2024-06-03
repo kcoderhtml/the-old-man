@@ -54,8 +54,11 @@ app.event('member_joined_channel', async ({ event, client }) => {
 
 // liste for any message
 app.message(async ({ message, say }) => {
-    // @ts-ignore
-    await onboardingStep(message.user, app.client);
+    // check if the message is from a bot
+    if (message.subtype !== 'bot_message') {
+        // @ts-ignore
+        await onboardingStep(message.user, app.client);
+    }
 });
 
 (async () => {
