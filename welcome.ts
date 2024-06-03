@@ -145,7 +145,7 @@ export async function clear(userID: string, client: WebClient) {
         channel: conversation?.id as string,
     }).then(async (res) => {
         for (const message of res.messages as any[]) {
-            if (message.subtype !== "bot_message") {
+            if (message.bot_id !== undefined) {
                 console.log("Deleting message", message.ts);
                 await client.chat.delete({
                     channel: userID,
