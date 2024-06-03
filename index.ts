@@ -57,7 +57,7 @@ app.event('member_joined_channel', async ({ event, client }) => {
 app.message(async ({ message, say }) => {
     // check if the message is from a bot
     if (message.subtype === undefined && message.user) {
-        await onboardingStep(message.user, app.client);
+        await onboardingStep(message.user, app.client, true);
     }
 });
 
