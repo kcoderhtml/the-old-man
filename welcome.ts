@@ -69,8 +69,6 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
         return
     }
 
-    console.log("check", onboarding[metadata.onboardingStep].check)
-
     if (onboarding[metadata.onboardingStep].check !== undefined) {
         const userNetWorth = await getUserNetWorth(userID);
         const items = await $`node bag/get-user-items.js ${userID}`.json();
@@ -116,11 +114,7 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
                 }
             }
         }
-    } else {
-        console.log("No check items");
     }
-
-    console.log("give", onboarding[step].give)
 
     if (onboarding[step].give !== undefined && onboarding[step].give.length > 0) {
         for (const item of onboarding[step].give) {
@@ -155,7 +149,6 @@ export async function clear(userID: string, client: WebClient) {
     const conversations = await client.conversations.list({
         types: "im",
     });
-    console.log(conversations);
     const conversation = conversations.channels?.find((channel) => channel.user === userID);
     await client.conversations.history({
         channel: conversation?.id as string,
@@ -167,8 +160,6 @@ export async function clear(userID: string, client: WebClient) {
                     channel: userID,
                     ts: message.ts as string,
                 });
-            } else {
-                console.log("Not deleting message", message.ts);
             }
         }
     });
