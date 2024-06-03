@@ -21,8 +21,6 @@ export async function welcome(userID: string, client: WebClient) {
         // clear the metadata
         await updateUserMetadata(userID, JSON.stringify({ onboarding: null, onboardingStep: null }));
     }
-    // get the user's net worth
-    const netWorth = await getUserNetWorth(userID);
 
     // pull the onboarding file
     const onboarding = await Bun.file("bag/onboarding-workflow.json").json();
@@ -59,6 +57,8 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
         step = onboarding[metadata.onboardingStep].next;
     }
 
+    console.log("🚀 Step:", step);
+
     if (step === "completed") {
         // if the user has completed the onboarding process, log an error
         console.log(`❌ User ${userID} has already completed the onboarding process`);
@@ -69,11 +69,15 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
         return
     }
 
+    console.log("check", onboarding[metadata.onboardingStep].check)
+
     if (onboarding[metadata.onboardingStep].check !== undefined && onboarding[metadata.onboardingStep].check.length > 0) {
         const userNetWorth = await getUserNetWorth(userID);
         const items = await $`node bag/get-user-items.js ${userID}`.json();
+        console.log("checkItems", onboarding[metadata.onboardingStep].check);
         for (const checkItem of onboarding[metadata.onboardingStep].check) {
             if (checkItem.netWorth !== undefined) {
+                console.log("Checking net worth", checkItem.opperator, checkItem.netWorth, userNetWorth);
                 if (checkItem.opperator === "less") {
                     if (userNetWorth < checkItem.netWorth) {
                         await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: checkItem.next }));
@@ -89,6 +93,7 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
                     }
                 }
             } else if (checkItem.resource !== undefined) {
+                console.log("Checking resource", checkItem.resource, checkItem.quantity);
                 if (items.find((item: any) => item.name.toLowerCase() === checkItem.resource) !== undefined) {
                     // if the user has required amount of the resource, move to the next step
                     if (items.find((item: any) => item.name.toLowerCase() === checkItem.resource).quantity < checkItem.quantity) {
@@ -101,10 +106,15 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
                 }
             }
         }
+    } else {
+        console.log("No check items");
     }
+
+    console.log("give", onboarding[step].give)
 
     if (onboarding[step].give !== undefined && onboarding[step].give.length > 0) {
         for (const item of onboarding[step].give) {
+            console.log("Giving item", item.name, item.quantity);
             await $`node bag/give-item.js ${userID} ${item.name} ${item.quantity}`;
         }
     }
@@ -135,11 +145,15 @@ export async function clear(userID: string, client: WebClient) {
         channel: conversation?.id as string,
     }).then(async (res) => {
         for (const message of res.messages as any[]) {
-            console.log(message);
-            await client.chat.delete({
-                channel: userID,
-                ts: message.ts as string,
-            });
+            if (message.subtype !== "bot_message") {
+                console.log("Deleting message", message.ts);
+                await client.chat.delete({
+                    channel: userID,
+                    ts: message.ts as string,
+                });
+            } else {
+                console.log("Not deleting message", message.ts);
+            }
         }
     });
 }
@@ -204,7 +218,8 @@ export async function updateItemIdData() {
 async function getUserMetadata(userID: string) {
     // get the user's metadata
     // run bagtest.js with node to see the output
-    return (await $`node bag/get-identity-metadata.js ${userID}`).json();
+    const metadata = (await $`node bag/get-identity-metadata.js ${userID}`).json()
+    return metadata ? metadata : { onboarding: null, onboardingStep: null }
 }
 
 async function updateUserMetadata(userID: string, metadata: string) {
