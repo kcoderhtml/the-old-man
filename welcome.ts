@@ -126,8 +126,14 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
     });
 
     // update the user's metadata to reflect the next step
-    await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: step }));
-
+    if (onboarding[step].next === "completed") {
+        // if the user has completed the onboarding process, log an error
+        console.log(`✅ User ${userID} has completed the onboarding process`);
+        await updateUserMetadata(userID, JSON.stringify({ onboarding: "completed", onboardingStep: "completed" }));
+        return
+    } else {
+        await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: step }));
+    }
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
     onboardingStep(userID, client, onboarding[step].next);
