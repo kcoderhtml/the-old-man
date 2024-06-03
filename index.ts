@@ -89,7 +89,7 @@ app.message(async ({ message, say }) => {
 
                 try {
                     await app.client.chat.postMessage({
-                        channel: channels.superDevLog!,
+                        channel: lchannel,
                         text: `Elysia has been summoned for <@${body.userID}>! :sparkles:; Summoning <@${process.env.SLACK_BOT_ID}> to welcome them... :wave:`,
                     });
 
