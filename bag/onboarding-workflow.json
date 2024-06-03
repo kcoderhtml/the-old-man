@@ -4,7 +4,7 @@
 		"next": "levelcheck"
 	},
 	"levelcheck": {
-		"text": "Now, let's see what we're workin' with here. How many thingermajigs do you have in your bag right now?",
+		"text": "Now, let's see what we're workin' with here. How many thingermajigs do you have in your bag right now? I'll take a peek for ya. Just a sec...",
 		"check": [
 			{
 				"netWorth": 2000,
