@@ -71,7 +71,7 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
 
     console.log("check", onboarding[metadata.onboardingStep].check)
 
-    if (onboarding[metadata.onboardingStep].check !== undefined && onboarding[metadata.onboardingStep].check.length > 0) {
+    if (onboarding[metadata.onboardingStep].check !== undefined) {
         const userNetWorth = await getUserNetWorth(userID);
         const items = await $`node bag/get-user-items.js ${userID}`.json();
         console.log("checkItems", onboarding[metadata.onboardingStep].check);
