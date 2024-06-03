@@ -47,7 +47,20 @@ settings:
   org_deploy_enabled: false
   socket_mode_enabled: false
   token_rotation_enabled: false
+```
 
+You also need to create a `.env` file with the following content:
+```bash
+SLACK_BOT_TOKEN=xoxb-xxxx-xxxxxxxxx-xxxxxxxxxxxxxxx
+SLACK_SIGNING_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+SLACK_APP_TOKEN=xapp-x-xxxxxxxxx-xxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+SLACK_BOT_ID=xxxxxxxxx
+
+SUPER_DEV_LOG_CHANNEL=xxxxxxxxx
+API_BEARER=smthingsupersecret
+
+BAG_APP_TOKEN=xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx # should have ADMIN permissions
+BAG_APP_ID=xx
 ```
 
 This project was created using `bun init` in bun v1.1.7. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
