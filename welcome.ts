@@ -46,7 +46,7 @@ export async function welcome(userID: string, client: WebClient) {
     }
 }
 
-export async function onboardingStep(userID: string, client: WebClient, nextStep?: string) {
+export async function onboardingStep(userID: string, client: WebClient, slackEvent?: boolean, nextStep?: string) {
     const onboarding = await Bun.file("bag/onboarding-workflow.json").json();
     const metadata = await getUserMetadata(userID);
     let step: string
@@ -69,6 +69,10 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
         return
     }
 
+    if (slackEvent && onboarding[metadata.onboardingStep].check === undefined) {
+        return
+    }
+
     if (onboarding[metadata.onboardingStep].check !== undefined) {
         const userNetWorth = await getUserNetWorth(userID);
         const items = await $`node bag/get-user-items.js ${userID}`.json();
@@ -79,14 +83,14 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
                 if (checkItem.opperator === "less") {
                     if (userNetWorth < checkItem.netWorth) {
                         await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: checkItem.next }));
-                        onboardingStep(userID, client, checkItem.next);
+                        onboardingStep(userID, client, false, checkItem.next);
                         return
                     }
                 }
                 if (checkItem.opperator === "greater") {
                     if (userNetWorth > checkItem.netWorth) {
                         await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: checkItem.next }));
-                        onboardingStep(userID, client, checkItem.next);
+                        onboardingStep(userID, client, false, checkItem.next);
                         return
                     }
                 }
@@ -140,7 +144,7 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
     }
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    onboardingStep(userID, client, onboarding[step].next);
+    onboardingStep(userID, client, false, onboarding[step].next);
 }
 
 export async function clear(userID: string, client: WebClient) {
