@@ -17,7 +17,7 @@ let bagData: {
 
 export async function welcome(userID: string, client: WebClient) {
     if (process.env.NODE_ENV === undefined) {
-        clear(userID, client);
+        await clear(userID, client);
         // clear the metadata
         await updateUserMetadata(userID, JSON.stringify({ onboarding: null, onboardingStep: null }));
     }
