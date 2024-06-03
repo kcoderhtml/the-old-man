@@ -29,6 +29,8 @@ COPY --from=prerelease /usr/src/app/bag bag
 COPY --from=prerelease /usr/src/app/welcome.ts .
 COPY --from=prerelease /usr/src/app/index.ts .
 COPY --from=prerelease /usr/src/app/package.json .
+# make data directory
+RUN mkdir -p data
 
 # run the app
 USER bun
