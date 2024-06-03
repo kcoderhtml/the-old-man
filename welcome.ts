@@ -97,6 +97,7 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
                 if (items.find((item: any) => item.name.toLowerCase() === checkItem.resource) !== undefined) {
                     // if the user has required amount of the resource, move to the next step
                     if (items.find((item: any) => item.name.toLowerCase() === checkItem.resource).quantity + 1 < checkItem.quantity) {
+                        console.log("User doesn't have required amount of resource", checkItem.resource + ";", "actual amount", items.find((item: any) => item.name.toLowerCase() === checkItem.resource).quantity);
                         client.chat.postMessage({
                             channel: userID,
                             text: checkItem.failMessage.replace("{xmore}", checkItem.quantity - 1 - items.find((item: any) => item.name.toLowerCase() === checkItem.resource).quantity),
@@ -110,7 +111,7 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
                         channel: userID,
                         text: checkItem.failMessage.replace("{xmore}", checkItem.quantity),
                     });
-                    console.log("User doesn't have required amount of resource", checkItem.resource);
+                    console.log("User doesn't have required amount of resource", checkItem.resource + ";", "actual amount", 0);
                     return
                 }
             }
