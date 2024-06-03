@@ -31,6 +31,10 @@ COPY --from=prerelease /usr/src/app/index.ts .
 COPY --from=prerelease /usr/src/app/package.json .
 # make data directory
 RUN mkdir -p data
+RUN chown -R bun:bun data
+# pull the items.yaml file from the bag
+RUN cd data && wget wget https://raw.githubusercontent.com/rivques/bag-manifest/production/items.yaml
+RUN chown -R bun:bun data/items.yaml
 
 # run the app
 USER bun
