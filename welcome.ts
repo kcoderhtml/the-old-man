@@ -143,6 +143,10 @@ export async function onboardingStep(userID: string, client: WebClient, slackEve
         await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: step }));
     }
 
+    if (onboarding[step].pause !== undefined) {
+        return
+    }
+
     await new Promise((resolve) => setTimeout(resolve, 1000));
     onboardingStep(userID, client, false, onboarding[step].next);
 }

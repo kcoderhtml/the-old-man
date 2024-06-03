@@ -42,8 +42,9 @@
 		"next": "lvl0-2"
 	},
 	"lvl0-2": {
-		"text": "Wait I nearly forgot to tell you how to opperate your tools! Just type `/use axe` or `/use pickaxe` in the chat to gather resources. Easy as pie! You can also check up on how much you've gathered with `/bag me`. Now, go on and gather some resources!",
-		"next": "lvl0-3"
+		"text": "Wait I nearly forgot to tell you how to opperate your tools! Just type `/use axe` or `/use pickaxe` in the chat to gather resources. Easy as pie! You can also check up on how much you've gathered with `/bag me`. Now, go on and gather some resources! I'll be waitin' here for ya.",
+		"next": "lvl0-3",
+		"pause": true
 	},
 	"lvl0-3": {
 		"text": "Now let's see what you've gathered. You can type `/bag me` in the chat to check your inventory, but i'll just take a peek for now... Hang tight...",
@@ -74,7 +75,8 @@
 				"failMessage": "You need to craft a furnace! Type `/item :-furnace:` to see the recipe."
 			}
 		],
-		"next": "lvl0-5"
+		"next": "lvl0-5",
+		"pause": true
 	},
 	"lvl0-5": {
 		"text": "Well done! You've crafted your first item. Now, let me tell you about the next piece of bag. You can trade with other players by typing `/trade @playername` in the chat. You can also `/give @playername` to give someone stuff from your bag! Now, go on and explore the world of gatherin', craftin', and tradin'!",
@@ -91,20 +93,22 @@
 		"next": "completed"
 	},
 	"lvl1": {
-		"text": "Well, shiver me timbers! You've already been doing some huntin' and gatherin', haven't ya? Good on ya! Now, let's see if you're ready for the next level. I'll give you a hand with that.",
+		"text": "Well, shiver me timbers! You've already been doing some huntin' and gatherin', haven't ya? Good on ya! Now, let's see if you're ready for the next level. I'll give you a hand with that. Also do prompt me if i seem to have forgotten about you; I'm gettin' on in years, you know.",
 		"next": "lvl1-1"
 	},
 	"lvl1-1": {
 		"text": "I see you've been gatherin' resources, but have you tried craftin' anything yet? Since you're already familiar with the basics, I'll just give you der basics; to find out how to craft an item, type `/item :-itemname:` in the chat. Once you've seen the recipe, type `/craft` followed by the items needed to make it.",
-		"next": "lvl1-2"
+		"next": "lvl1-2",
+		"pause": true
 	},
 	"lvl1-2": {
 		"text": "Now, let's see what you have in your bag. You can type `/bag me` in the chat to check your inventory.",
 		"next": "lvl1-3"
 	},
 	"lvl1-3": {
-		"text": "Well well well, lookee here! You have quite the collection of resources in your bag. Now, let's / refresh you on how to trade with other players.\n\nTraden with other's is really quite simple. Just type `/trade @playername` in the chat to start a trade. You can also `/give @playername` to give them a little smthn from your bag! Now, go on and explore the world of gatherin', craftin', and tradin'!",
-		"next": "lvl1-4"
+		"text": "Well well well, lookee here! You have quite the collection of resources in your bag. Now, let's refresh you on how to trade with other players.\n\nTraden with other's is really quite simple. Just type `/trade @playername` in the chat to start a trade. You can also `/give @playername` to give them a little smthn from your bag! Now, go on and explore the world of gatherin', craftin', and tradin'!",
+		"next": "lvl1-4",
+		"pause": true
 	},
 	"lvl1-4": {
 		"text": "Well, that's all for now. If you ever need help, just ask one of the other adventurers. They're a friendly bunch, always ready to lend a hand. Oh, and before I forget, here's a little somethin' to get you started on your journey. Good luck out there!\n\nhttps://hackclub.github.io/bag-manifest/",
@@ -122,11 +126,13 @@
 	},
 	"lvl2-1": {
 		"text": "Now, let's see what you have in your bag. You can type `/bag me` in the chat to check your inventory.",
-		"next": "lvl2-2"
+		"next": "lvl2-2",
+		"pause": true
 	},
 	"lvl2-2": {
 		"text": "Well well well, lookee here! You have quite the collection of resources in your bag. Now, let's refresh you on how to trade with other players.\n\nTraden with other's is really quite simple. Just type `/trade @playername` in the chat to start a trade. You can also `/give @playername` to give them a little smthn from your bag! Now, go on and explore the world of gatherin', craftin', and tradin'!",
-		"next": "lvl2-3"
+		"next": "lvl2-3",
+		"pause": true
 	},
 	"lvl2-3": {
 		"text": "Well, that's all for now. If you ever need help, just ask one of the other adventurers. They're a friendly bunch, always ready to lend a hand. Oh, and before I forget, here's a little somethin' to keep you a-going on your journey. Good luck out there traveler!\n\nhttps://hackclub.github.io/bag-manifest/",
