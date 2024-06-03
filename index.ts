@@ -37,7 +37,7 @@ const app = new App({
     signingSecret: process.env.SLACK_SIGNING_SECRET,
     appToken: process.env.SLACK_APP_TOKEN,
     logLevel: LogLevel.INFO,
-    port: Number(process.env.PORT) || 3000,
+    port: 3000,
 });
 
 // listen for new members joining the market - town square channels
@@ -63,7 +63,7 @@ app.message(async ({ message, say }) => {
 (async () => {
     try {
         // Start your app
-        await app.start(Number(process.env.PORT) || 3000);
+        await app.start(3000);
 
         console.log('⚡️ Bolt app is running!');
 
@@ -104,7 +104,7 @@ app.message(async ({ message, say }) => {
                         },
                     });
                 }
-            }).listen(process.env.ELYSIA_PORT || 3001);
+            }).listen(3001);
 
         console.log('🦊 Elysia is running!');
 
