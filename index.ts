@@ -19,6 +19,7 @@ const channels = {
 };
 
 let env = process.env.NODE_ENV
+console.log('🌲 Environment ' + env)
 
 let lchannel;
 if (env === "production") {
