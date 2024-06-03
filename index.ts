@@ -1,7 +1,7 @@
 import { App, LogLevel } from '@slack/bolt';
 import { Elysia } from 'elysia';
 
-import { welcome, updateItemIdData } from './welcome';
+import { welcome, updateItemIdData, onboardingStep } from './welcome';
 
 const channels = {
     superDevLog: process.env.SUPER_DEV_LOG_CHANNEL || "",
@@ -55,8 +55,7 @@ app.event('member_joined_channel', async ({ event, client }) => {
 // liste for any message
 app.message(async ({ message, say }) => {
     // check if the message is from a bot
-    if (message.subtype !== 'bot_message') {
-        // @ts-ignore
+    if (message.subtype === undefined && message.user) {
         await onboardingStep(message.user, app.client);
     }
 });
