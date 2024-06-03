@@ -40,6 +40,14 @@ RUN apt-get update && apt-get install -y wget
 USER bun
 RUN cd data && wget https://raw.githubusercontent.com/rivques/bag-manifest/production/items.yaml && chown -R bun:bun items.yaml
 
+# install node
+USER root
+RUN apt-get update && apt-get install -y curl unzip
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+RUN bash nodesource_setup.sh
+RUN apt-get install -y nodejs
+RUN node -v
+
 # run the app
 USER bun
 EXPOSE 3000/tcp
