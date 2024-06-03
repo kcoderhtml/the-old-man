@@ -7,17 +7,17 @@
 		"text": "Now, let's see what we're workin' with here. How many thingermajigs do you have in your bag right now?",
 		"check": [
 			{
-				"netWorth": 100,
+				"netWorth": 2000,
 				"opperator": "less",
 				"next": "lvl0"
 			},
 			{
-				"netWorth": 500,
+				"netWorth": 8000,
 				"opperator": "less",
 				"next": "lvl1"
 			},
 			{
-				"netWorth": 500,
+				"netWorth": 8000,
 				"opperator": "greater",
 				"next": "lvl2"
 			}
