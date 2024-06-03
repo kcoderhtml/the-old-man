@@ -46,7 +46,7 @@
 		"next": "lvl0-3"
 	},
 	"lvl0-3": {
-		"text": "Now let's see what you've gathered. You can type `/bag me` in the chat to check your inventory, but i'll just take a peek for now...",
+		"text": "Now let's see what you've gathered. You can type `/bag me` in the chat to check your inventory, but i'll just take a peek for now... Hang tight...",
 		"check": [
 			{
 				"resource": "log",
@@ -117,7 +117,7 @@
 		"next": "completed"
 	},
 	"lvl2": {
-		"text": "Well, shiver me timbers! You're quite the seasoned adventurer, aren't ya? You've been gatherin', craftin', and tradin' like a pro! Now, leme just give you the quick rundown to make sure you know all the bells and whistles of this here shiny, {puasee, :thincc:} well i do believe it ain't shiny no more, you get the point though.",
+		"text": "Well, shiver me timbers! You're quite the seasoned adventurer, aren't ya? You've been gatherin', craftin', and tradin' like a pro! Now, leme just give you the quick rundown to make sure you know all the bells and whistles of this here shiny, {puasee, :thincc:} well i do believe it ain't shiny no more, you get the point though. Oh, and do prompt me if i seem to have forgotten about you; I'm gettin' on in years, you know.",
 		"next": "lvl2-1"
 	},
 	"lvl2-1": {
