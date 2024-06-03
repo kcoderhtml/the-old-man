@@ -99,10 +99,19 @@ export async function onboardingStep(userID: string, client: WebClient, nextStep
                     if (items.find((item: any) => item.name.toLowerCase() === checkItem.resource).quantity + 1 < checkItem.quantity) {
                         client.chat.postMessage({
                             channel: userID,
-                            text: checkItem.failMessage,
+                            text: checkItem.failMessage.replace("{xmore}", checkItem.quantity - 1 - items.find((item: any) => item.name.toLowerCase() === checkItem.resource).quantity),
                         });
                         return
+                    } else {
+                        console.log("User has required amount of resource", checkItem.resource, "count", items.find((item: any) => item.name.toLowerCase() === checkItem.resource).quantity);
                     }
+                } else {
+                    client.chat.postMessage({
+                        channel: userID,
+                        text: checkItem.failMessage.replace("{xmore}", checkItem.quantity),
+                    });
+                    console.log("User doesn't have required amount of resource", checkItem.resource);
+                    return
                 }
             }
         }
