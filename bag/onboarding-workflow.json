@@ -32,7 +32,11 @@
 			},
 			{
 				"name": "Pickaxe",
-				"quantity": 3
+				"quantity": 4
+			},
+			{
+				"name": "Shovel",
+				"quantity": 4
 			}
 		],
 		"next": "lvl0-1"
@@ -62,7 +66,7 @@
 			{
 				"resource": "rock",
 				"quantity": 8,
-				"failMessage": "You need to gather more rocks! At least {xmore} more of them."
+				"failMessage": "You need to gather more rocks! At least {xmore} more of them. you can find them in <#C06KJCY58GY> where you can use a shovel."
 			}
 		],
 		"next": "lvl0-4"
