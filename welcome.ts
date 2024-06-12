@@ -70,7 +70,10 @@ export async function onboardingStep(userID: string, client: SlackAPIClient, sla
     }
 
     if (slackEvent && onboarding[metadata.onboardingStep].check === undefined) {
-        return
+        // check if there is a pause
+        if (onboarding[metadata.onboardingStep].pause === undefined) {
+            return
+        }
     }
 
     if (onboarding[metadata.onboardingStep].check !== undefined) {
