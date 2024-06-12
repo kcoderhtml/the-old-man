@@ -5,23 +5,7 @@
 	},
 	"levelcheck": {
 		"text": "Now, let's see what we're workin' with here. How many thingermajigs do you have in your bag right now? I'll take a peek for ya. Just a sec...",
-		"check": [
-			{
-				"netWorth": 2000,
-				"opperator": "less",
-				"next": "lvl0"
-			},
-			{
-				"netWorth": 8000,
-				"opperator": "less",
-				"next": "lvl1"
-			},
-			{
-				"netWorth": 8000,
-				"opperator": "greater",
-				"next": "lvl2"
-			}
-		]
+		"next": "lvl0"
 	},
 	"lvl0": {
 		"text": "Well, shiver me timbers! You're just startin' out, aren't ya? No worries, we all start somewhere. Let's get you up to speed with the basics. First things first, you gotta gather some thingermajigs. Leme give you a hand with that.",
@@ -92,58 +76,6 @@
 			{
 				"name": "gp",
 				"quantity": 85
-			}
-		],
-		"next": "completed"
-	},
-	"lvl1": {
-		"text": "Well, shiver me timbers! You've already been doing some huntin' and gatherin', haven't ya? Good on ya! Now, let's see if you're ready for the next level. I'll give you a hand with that. Also do prompt me if i seem to have forgotten about you; I'm gettin' on in years, you know.",
-		"next": "lvl1-1"
-	},
-	"lvl1-1": {
-		"text": "I see you've been gatherin' resources, but have you tried craftin' anything yet? Since you're already familiar with the basics, I'll just give you der basics; to find out how to craft an item, type `/item :-itemname:` in the chat. Once you've seen the recipe, type `/craft` followed by the items needed to make it.",
-		"next": "lvl1-2",
-		"pause": true
-	},
-	"lvl1-2": {
-		"text": "Now, let's see what you have in your bag. You can type `/bag me` in the chat to check your inventory.",
-		"next": "lvl1-3"
-	},
-	"lvl1-3": {
-		"text": "Well well well, lookee here! You have quite the collection of resources in your bag. Now, let's refresh you on how to trade with other players.\n\nTraden with other's is really quite simple. Just type `/trade @playername` in the chat to start a trade. You can also `/give @playername` to give them a little smthn from your bag! Now, go on and explore the world of gatherin', craftin', and tradin'!",
-		"next": "lvl1-4",
-		"pause": true
-	},
-	"lvl1-4": {
-		"text": "Well, that's all for now. If you ever need help, just ask one of the other adventurers. They're a friendly bunch, always ready to lend a hand. Oh, and before I forget, here's a little somethin' to get you started on your journey. Good luck out there!\n\nhttps://hackclub.github.io/bag-manifest/",
-		"give": [
-			{
-				"name": "gp",
-				"quantity": 85
-			}
-		],
-		"next": "completed"
-	},
-	"lvl2": {
-		"text": "Well, shiver me timbers! You're quite the seasoned adventurer, aren't ya? You've been gatherin', craftin', and tradin' like a pro! Now, leme just give you the quick rundown to make sure you know all the bells and whistles of this here shiny, {puasee, :thincc:} well i do believe it ain't shiny no more, you get the point though. Oh, and do prompt me if i seem to have forgotten about you; I'm gettin' on in years, you know.",
-		"next": "lvl2-1"
-	},
-	"lvl2-1": {
-		"text": "Now, let's see what you have in your bag. You can type `/bag me` in the chat to check your inventory.",
-		"next": "lvl2-2",
-		"pause": true
-	},
-	"lvl2-2": {
-		"text": "Well well well, lookee here! You have quite the collection of resources in your bag. Now, let's refresh you on how to trade with other players.\n\nTraden with other's is really quite simple. Just type `/trade @playername` in the chat to start a trade. You can also `/give @playername` to give them a little smthn from your bag! Now, go on and explore the world of gatherin', craftin', and tradin'!",
-		"next": "lvl2-3",
-		"pause": true
-	},
-	"lvl2-3": {
-		"text": "Well, that's all for now. If you ever need help, just ask one of the other adventurers. They're a friendly bunch, always ready to lend a hand. Oh, and before I forget, here's a little somethin' to keep you a-going on your journey. Good luck out there traveler!\n\nhttps://hackclub.github.io/bag-manifest/",
-		"give": [
-			{
-				"name": "gp",
-				"quantity": 65
 			}
 		],
 		"next": "completed"
