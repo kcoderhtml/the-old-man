@@ -1,6 +1,6 @@
 # use the official Bun image
 # see all versions at https://hub.docker.com/r/oven/bun/tags
-FROM oven/bun:1 as base
+FROM kcoderhtml/bun-node-base as base
 WORKDIR /usr/src/app
 
 # install dependencies into temp directory
@@ -32,21 +32,10 @@ COPY --from=prerelease /usr/src/app/package.json .
 # make data directory
 RUN mkdir -p data
 RUN chown -R bun:bun data
-# pull the items.yaml file from the bag
-# install wget
-USER root
-RUN apt-get update && apt-get install -y wget
+
 # pull the items.yaml file from the bag
 USER bun
 RUN cd data && wget https://raw.githubusercontent.com/rivques/bag-manifest/production/items.yaml && chown -R bun:bun items.yaml
-
-# install node
-USER root
-RUN apt-get update && apt-get install -y curl unzip
-RUN curl -fsSL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
-RUN bash nodesource_setup.sh
-RUN apt-get install -y nodejs
-RUN node -v
 
 # run the app
 USER bun
