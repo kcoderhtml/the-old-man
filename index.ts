@@ -33,6 +33,8 @@ if (env === "production") {
     lchannel = channels.superDevLog!;
 }
 
+const bagCommandUsers = process.env.BAG_COMMAND_USERS?.split(',') || [];
+
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
     signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -65,7 +67,6 @@ app.message(async ({ message }) => {
 app.command("/old-man-demo", async ({ command, ack, respond, client }) => {
     await ack();
 
-    console.log(command.text);
     // parse <@U05QJ4CF5QT|regards-cookers0a> to U05QJ4CF5QT
     const matchResult = command.text.match(/<@(\w+)\|/);
     const userID = matchResult ? matchResult[1] : null;
@@ -78,7 +79,15 @@ app.command("/old-man-demo", async ({ command, ack, respond, client }) => {
         return;
     }
 
-    console.log(userID);
+    // check if the user is allowed to use the command
+    if (!bagCommandUsers.includes(command.user_id)) {
+        console.log(bagCommandUsers)
+        await respond({
+            response_type: "ephemeral",
+            text: `You are not allowed to use this command`,
+        });
+        return;
+    }
 
     // send a ephemeral message to the user who used the command
     await respond({
