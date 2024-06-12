@@ -62,7 +62,7 @@ API_BEARER=smthingsupersecret
 BAG_APP_TOKEN=xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx # should have ADMIN permissions
 BAG_APP_ID=xx
 
-BAG_COMMAND_USERS=xxxxxx,xxxxxx,xxxxxx # comma separated list of user ids
+BAG_COMMAND_PASSWORD=xxxxxx
 ```
 
 This project was created using `bun init` in bun v1.1.7. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.

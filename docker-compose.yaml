@@ -15,5 +15,5 @@ services:
       - API_BEARER=smthingsupersecret
       - BAG_APP_TOKEN=xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
       - BAG_APP_ID=xx
-      - BAG_COMMAND_USERS=xxxxxx,xxxxxx # comma separated user ids
+      - BAG_COMMAND_PASSWORD=xxxxxx
       - NODE_ENV=production

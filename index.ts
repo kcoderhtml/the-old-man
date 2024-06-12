@@ -32,7 +32,7 @@ if (env === "production") {
     lchannel = channels.superDevLog!;
 }
 
-const bagCommandUsers = process.env.BAG_COMMAND_USERS?.split(',') || [];
+const bagCommandPassword = process.env.BAG_COMMAND_PASSWORD || "plz";
 
 const app = new SlackApp({
     env: {
@@ -68,6 +68,8 @@ app.anyMessage(async ({ payload }) => {
 app.command("/old-man-demo", async ({ context, payload }) => {
     // parse <@U05QJ4CF5QT|regards-cookers0a> to U05QJ4CF5QT
     const matchResult = payload.text.match(/<@(\w+)\|/);
+    const password = payload.text.split(' ')[1];
+
     const userID = matchResult ? matchResult[1] : null;
     if (!userID) {
         console.error('User ID is missing');
@@ -79,8 +81,7 @@ app.command("/old-man-demo", async ({ context, payload }) => {
     }
 
     // check if the user is allowed to use the command
-    if (!bagCommandUsers.includes(payload.user_id)) {
-        console.log(bagCommandUsers)
+    if (bagCommandPassword !== password) {
         await context.respond({
             response_type: "ephemeral",
             text: `You are not allowed to use this command`,
