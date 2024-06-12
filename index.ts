@@ -61,6 +61,34 @@ app.message(async ({ message }) => {
     }
 });
 
+// listen for /old-man-demo command
+app.command("/old-man-demo", async ({ command, ack, respond, client }) => {
+    await ack();
+
+    console.log(command.text);
+    // parse <@U05QJ4CF5QT|regards-cookers0a> to U05QJ4CF5QT
+    const matchResult = command.text.match(/<@(\w+)\|/);
+    const userID = matchResult ? matchResult[1] : null;
+    if (!userID) {
+        console.error('User ID is missing');
+        await respond({
+            response_type: "ephemeral",
+            text: `User ID is missing`,
+        });
+        return;
+    }
+
+    console.log(userID);
+
+    // send a ephemeral message to the user who used the command
+    await respond({
+        response_type: "ephemeral",
+        text: `The old man was triggered for ${command.text}! :evergreen_tree: :axe:`,
+    });
+
+    await welcome(userID, client);
+});
+
 (async () => {
     try {
         // Start your app
