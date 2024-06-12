@@ -1,6 +1,5 @@
-import { App, LogLevel } from '@slack/bolt';
+import { SlackApp } from "slack-edge";
 import { Elysia } from 'elysia';
-
 import { welcome, updateItemIdData, onboardingStep } from './welcome';
 
 const channels = {
@@ -35,44 +34,45 @@ if (env === "production") {
 
 const bagCommandUsers = process.env.BAG_COMMAND_USERS?.split(',') || [];
 
-const app = new App({
-    token: process.env.SLACK_BOT_TOKEN,
-    signingSecret: process.env.SLACK_SIGNING_SECRET,
-    appToken: process.env.SLACK_APP_TOKEN,
-    logLevel: LogLevel.INFO,
-    port: 3000,
+const app = new SlackApp({
+    env: {
+        SLACK_BOT_TOKEN: process.env.SLACK_BOT_TOKEN!,
+        SLACK_SIGNING_SECRET: process.env.SLACK_SIGNING_SECRET!,
+        SLACK_APP_TOKEN: process.env.SLACK_APP_TOKEN!,
+        SLACK_LOGGING_LEVEL: "INFO",
+    },
+    startLazyListenerAfterAck: true
 });
 
 // listen for new members joining the market - town square channels
-app.event('member_joined_channel', async ({ event, client }) => {
+app.event('member_joined_channel', async ({ context, payload }) => {
     for (const [key, value] of Object.entries(channels.joinMonitor)) {
-        if (event.channel === value) {
-            await client.chat.postMessage({
+        if (payload.channel === value) {
+            await context.client.chat.postMessage({
                 channel: channels.superDevLog!,
-                text: `A new member <@${event.user}> has joined the ${key} channel!`,
+                text: `A new member <@${payload.user}> has joined the ${key} channel!`,
             });
         }
     }
 });
 
 // liste for any message
-app.message(async ({ message }) => {
+app.anyMessage(async ({ context, payload }) => {
+    payload.subtype
     // check if the message is from a bot
-    if (message.subtype === undefined && message.user) {
-        await onboardingStep(message.user, app.client, true);
+    if (payload.subtype === undefined && payload.user) {
+        await onboardingStep(payload.user, app.client, true);
     }
 });
 
 // listen for /old-man-demo command
-app.command("/old-man-demo", async ({ command, ack, respond, client }) => {
-    await ack();
-
+app.command("/old-man-demo", async ({ context, payload }) => {
     // parse <@U05QJ4CF5QT|regards-cookers0a> to U05QJ4CF5QT
-    const matchResult = command.text.match(/<@(\w+)\|/);
+    const matchResult = payload.text.match(/<@(\w+)\|/);
     const userID = matchResult ? matchResult[1] : null;
     if (!userID) {
         console.error('User ID is missing');
-        await respond({
+        await context.respond({
             response_type: "ephemeral",
             text: `User ID is missing`,
         });
@@ -80,9 +80,9 @@ app.command("/old-man-demo", async ({ command, ack, respond, client }) => {
     }
 
     // check if the user is allowed to use the command
-    if (!bagCommandUsers.includes(command.user_id)) {
+    if (!bagCommandUsers.includes(payload.user_id)) {
         console.log(bagCommandUsers)
-        await respond({
+        await context.respond({
             response_type: "ephemeral",
             text: `You are not allowed to use this command`,
         });
@@ -90,19 +90,23 @@ app.command("/old-man-demo", async ({ command, ack, respond, client }) => {
     }
 
     // send a ephemeral message to the user who used the command
-    await respond({
+    await context.respond({
         response_type: "ephemeral",
-        text: `The old man was triggered for ${command.text}! :evergreen_tree: :axe:`,
+        text: `The old man was triggered for ${payload.text}! :evergreen_tree: :axe:`,
     });
 
-    await welcome(userID, client);
+    await welcome(userID, app.client);
 });
+
+export default {
+    port: 3000,
+    async fetch(request: Request) {
+        return await app.run(request);
+    },
+};
 
 (async () => {
     try {
-        // Start your app
-        await app.start(3000);
-
         console.log('⚡️ Bolt app is running!');
 
         console.log('💰 Updating Bag Data...');

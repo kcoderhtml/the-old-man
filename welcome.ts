@@ -1,5 +1,5 @@
-import { WebClient } from "@slack/web-api";
 import { $ } from "bun";
+import type { SlackAPIClient } from "slack-edge";
 import { parse } from "yaml";
 
 let bagData: {
@@ -15,7 +15,7 @@ let bagData: {
     genstore_price_variance: number;
 }[]
 
-export async function welcome(userID: string, client: WebClient) {
+export async function welcome(userID: string, client: SlackAPIClient) {
     if (process.env.NODE_ENV === undefined) {
         await clear(userID, client);
         // clear the metadata
@@ -46,7 +46,7 @@ export async function welcome(userID: string, client: WebClient) {
     }
 }
 
-export async function onboardingStep(userID: string, client: WebClient, slackEvent?: boolean, nextStep?: string) {
+export async function onboardingStep(userID: string, client: SlackAPIClient, slackEvent?: boolean, nextStep?: string) {
     const onboarding = await Bun.file("bag/onboarding-workflow.json").json();
     const metadata = await getUserMetadata(userID);
     let step: string
@@ -151,7 +151,7 @@ export async function onboardingStep(userID: string, client: WebClient, slackEve
     onboardingStep(userID, client, false, onboarding[step].next);
 }
 
-export async function clear(userID: string, client: WebClient) {
+export async function clear(userID: string, client: SlackAPIClient) {
     // delete all messages sent to the user
     // list conversations and pick the one with the user
     const conversations = await client.conversations.list({
