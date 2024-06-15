@@ -17,7 +17,7 @@ let bagData: {
 
 export async function welcome(userID: string, client: SlackAPIClient) {
     if (process.env.NODE_ENV === undefined) {
-        await clear(userID, client);
+        // await clear(userID, client);
         // clear the metadata
         await updateUserMetadata(userID, JSON.stringify({ onboarding: null, onboardingStep: null }));
     }
@@ -39,6 +39,17 @@ export async function welcome(userID: string, client: SlackAPIClient) {
             channel: userID,
             text: onboarding.introduction.text,
         });
+
+        // give items if randomGive
+        if (onboarding.introduction.randomGive !== undefined && onboarding.introduction.randomGive.length > 0) {
+            // pick 3 random items from the list that aren't the same
+            const items = onboarding.introduction.randomGive;
+            const randomItems = items.sort(() => 0.5 - Math.random()).slice(0, 3);
+            for (const item of randomItems) {
+                console.log("Giving item", item);
+                await $`node bag/give-item.js ${userID} ${item} 1`;
+            }
+        }
 
         // update the user's metadata to reflect that they've started the onboarding process
         await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: "introduction" }));

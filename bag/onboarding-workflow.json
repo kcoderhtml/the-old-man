@@ -1,7 +1,40 @@
 {
 	"introduction": {
-		"text": "Ahoy there, young adventurer! The name's Gramps, and let me tell you, I've seen my fair share of curious contraptions in my day. But this bag? This is a beaut! Just landed it on your doorstep, full of surprises. Now, this bag ain't your average sack of potatoes. It's a magic one, filled with the potential for gatherin', craftin', and even tradin' with your fellow explorers! But first things first, gotta learn about your bag!",
-		"next": "levelcheck"
+		"text": ">An mysterious old man comes by your home with a jaunty stroll, whistling as he goes. He throws a bag at your door, which bounces off and lands on your doorstep. You pick the bag up, feeling three objects inside. Some instructions are printed on the outside: *This is your bag. Use `/bag` to see what it holds.*",
+		"next": "levelcheck",
+		"randomGive": [
+			"Hairball",
+			"Fish Hat",
+			"Bonsai",
+			"Coconut",
+			"Mash Season 1",
+			"Mash Season 2",
+			"Mash Season 3",
+			"Mash Season 4",
+			"Mash Season 5",
+			"Mash Season 6",
+			"Mash Season 7",
+			"Mash Season 8",
+			"Mash Season 9",
+			"Mash Season 10",
+			"Mash Season 11",
+			"1982 Wurlitzer Jukebox",
+			"Rice",
+			"Crab",
+			"Cotten",
+			"Mash the Original Novel",
+			"Sockmeister Challenge Coin",
+			"Cheese",
+			"Wheat Seeds",
+			"Acorn",
+			"Blahaj",
+			"Fish",
+			"Mash The Complete Series",
+			"Cat Hat",
+			"Kamina's Shades",
+			"Clam",
+			"Grass Seeds"
+		]
 	},
 	"levelcheck": {
 		"text": "Now, let's see what we're workin' with here. How many thingermajigs do you have in your bag right now? I'll take a peek for ya. Just a sec...",
