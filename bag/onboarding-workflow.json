@@ -1,7 +1,7 @@
 {
 	"introduction": {
 		"text": ">An mysterious old man comes by your home with a jaunty stroll, whistling as he goes. He throws a bag at your door, which bounces off and lands on your doorstep. You pick the bag up, feeling three objects inside. Some instructions are printed on the outside: *This is your bag. Use `/bag` to see what it holds.*",
-		"next": "levelcheck",
+		"next": "itemCommand",
 		"randomGive": [
 			"Hairball",
 			"Fish Hat",
@@ -21,7 +21,7 @@
 			"1982 Wurlitzer Jukebox",
 			"Rice",
 			"Crab",
-			"Cotten",
+			"Cotton",
 			"Mash the Original Novel",
 			"Sockmeister Challenge Coin",
 			"Cheese",
@@ -34,83 +34,274 @@
 			"Kamina's Shades",
 			"Clam",
 			"Grass Seeds"
-		]
-	},
-	"levelcheck": {
-		"text": "Now, let's see what we're workin' with here. How many thingermajigs do you have in your bag right now? I'll take a peek for ya. Just a sec...",
-		"next": "lvl0"
-	},
-	"lvl0": {
-		"text": "Well, shiver me timbers! You're just startin' out, aren't ya? No worries, we all start somewhere. Let's get you up to speed with the basics. First things first, you gotta gather some thingermajigs. Leme give you a hand with that.",
-		"give": [
-			{
-				"name": "Axe",
-				"quantity": 4
-			},
-			{
-				"name": "Pickaxe",
-				"quantity": 4
-			},
-			{
-				"name": "Shovel",
-				"quantity": 4
-			}
 		],
-		"next": "lvl0-1"
-	},
-	"lvl0-1": {
-		"text": "There ye go! I gave you a nice sturdy set of tools to get you started. Now, go gather some wood from <#C06JF3MERUP> and some iron from <#C06KJDF425N> and come back to see me when you're done.",
-		"next": "lvl0-2"
-	},
-	"lvl0-2": {
-		"text": "Wait I nearly forgot to tell you how to opperate your tools! Just type `/use axe` or `/use pickaxe` in the chat to gather resources. Easy as pie! You can also check up on how much you've gathered with `/bag me`. Now, go on and gather some resources! I'll be waitin' here for ya.",
-		"next": "lvl0-3",
 		"pause": true
 	},
-	"lvl0-3": {
-		"text": "Now let's see what you've gathered. You can type `/bag me` in the chat to check your inventory, but i'll just take a peek for now... Hang tight...",
-		"check": [
+	"itemCommand": {
+		"randomReplace": [
 			{
-				"resource": "log",
-				"quantity": 10,
-				"failMessage": "You need to gather more logs! At least {xmore} more hunks."
+				"text": [":-apple:", "Apple"],
+				"give": [
+					{
+						"name": "Apple",
+						"quantity": 1
+					}
+				]
 			},
+
 			{
-				"resource": "iron_ore",
-				"quantity": 10,
-				"failMessage": "You need to gather more iron ore! At least {xmore} more oreos."
+				"text": [":-orange:", "Orange"],
+				"give": [
+					{
+						"name": "Orange",
+						"quantity": 1
+					}
+				]
 			},
+
 			{
-				"resource": "rock",
-				"quantity": 8,
-				"failMessage": "You need to gather more rocks! At least {xmore} more of them. you can find them in <#C06KJCY58GY> where you can use a shovel."
+				"text": [":-kiwi:", "Kiwi"],
+				"give": [
+					{
+						"name": "Kiwi",
+						"quantity": 1
+					}
+				]
+			},
+
+			{
+				"text": [":-banana:", "Banana"],
+				"give": [
+					{
+						"name": "Banana",
+						"quantity": 1
+					}
+				]
+			},
+
+			{
+				"text": [":-potato:", "Potato"],
+				"give": [
+					{
+						"name": "Potato",
+						"quantity": 1
+					}
+				]
 			}
 		],
-		"next": "lvl0-4"
-	},
-	"lvl0-4": {
-		"text": "Well done! You've gathered enough resources to craft your first item. Type `/item :-furnace:` in the chat to see how to make a furnace. Once you've seen the recipe, type `/craft` followed by the items needed to make it. Once you've crafted the furnace, let me know and i'll tell you about the next piece of bag.",
-		"check": [
-			{
-				"item": "furnace",
-				"failMessage": "You need to craft a furnace! Type `/item :-furnace:` to see the recipe."
-			}
-		],
-		"next": "lvl0-5",
+		"text": ">The old man appears again, kicking up dust as he shuffles down the road. He carefully places {{replace}} on your doorstep. You are suddently overcome with the urge to type `/item {{replace}}` to learn about this curious object.",
+		"next": "tradeCommand",
 		"pause": true
 	},
-	"lvl0-5": {
-		"text": "Well done! You've crafted your first item. Now, let me tell you about the next piece of bag. You can trade with other players by typing `/trade @playername` in the chat. You can also `/give @playername` to give someone stuff from your bag! Now, go on and explore the world of gatherin', craftin', and tradin'!",
-		"next": "lvl0-6"
+	"tradeCommand": {
+		"randomReplace": [
+			{
+				"text": [":-cool-shoes:"],
+				"give": [
+					{
+						"name": "Cool Shoes",
+						"quantity": 1
+					}
+				]
+			},
+
+			{
+				"text": [":-top-hat:"],
+				"give": [
+					{
+						"name": "Top Hat",
+						"quantity": 1
+					}
+				]
+			},
+
+			{
+				"text": [":-fancy-shirt:"],
+				"give": [
+					{
+						"name": "Fancy Shirt",
+						"quantity": 1
+					}
+				]
+			},
+
+			{
+				"text": [":-fancy-pants:"],
+				"give": [
+					{
+						"name": "Fancy Pants",
+						"quantity": 1
+					}
+				]
+			}
+		],
+		"text": ">This time the old man is tap-dancing. He executes a perfect one-armed handstand on your doorstep, and {{replace}} falls out of his pocket. What a strange person. He moonwalks away, screaming at the top of his lungs: \"You can trade! Use the `/trade` command! This is a very important skill!!!\"",
+		"next": "giveCommand",
+		"pause": true
 	},
-	"lvl0-6": {
-		"text": "Well, that's all for now. If you ever need help, just ask one of the other adventurers. They're a friendly bunch, always ready to lend a hand. Oh, and before I forget, here's two little somethin's to get you started on your journey. Good luck out there!\n\nhttps://hackclub.github.io/bag-manifest/",
+	"giveCommand": {
+		"randomReplace": [
+			{
+				"text": [":-apple:"],
+				"give": [
+					{
+						"name": "Apple",
+						"quantity": 1
+					}
+				]
+			},
+
+			{
+				"text": [":-hat:"],
+				"give": [
+					{
+						"name": "Hat",
+						"quantity": 1
+					}
+				]
+			},
+
+			{
+				"text": [":-fancy-pants:"],
+				"give": [
+					{
+						"name": "Fancy Pants",
+						"quantity": 1
+					}
+				]
+			}
+		],
+		"text": ">The old man is back. He seems a little less spry this time, huffing and puffing between skips and jumps. He drops {{replace}} outside your door, darts away gleefully, and shouts \"The `/give` command lets you give stuff! Isn't that neat?? Get out there and do some altruism!\" You are filled with the desire to do an altruistic act.",
+		"next": "pocketMoney",
+		"pause": true
+	},
+	"pocketMoney": {
+		"text": ">You look longingly out the window. You haven't seen your mysterious friend for some time now. You stand on your doorstep, thinking how you miss that funny old chap... life feels strangely empty without his antics. But what's that? A tuft of white hair peeks over the horizon. You see a silhouetted figure begin to rotate, spinning faster and faster, before releasing something with the perfect form of an Olympic-level hammer throw. Time stands still as you fixate on the object sailing toward you. The arc it makes through the atmosphere is beautiful. Poetic. Like a rainbow. And then, it hits you. Literally, you get beaned in the head by a rather heavy bag. Good thing you were wearing your favorite 1951 standard-issue US Army Korean War helmet. WWII surplus, to get into the mood for watching a little MASH this morning. You pick the bag up, feeling that it's full of gp, and look up to see the old man is gone once again. But you hear a cry from over the hill: I almost forgot, a little pocket money to stimulate the economyyyyyyyy!",
+		"next": "useCommand",
 		"give": [
 			{
 				"name": "gp",
 				"quantity": 85
 			}
 		],
-		"next": "completed"
+		"pause": true
+	},
+	"useCommand": {
+		"randomReplace": [
+			{
+				"text": [
+					":-bread:",
+					"#smallberry-farms",
+					"Bread",
+					"#smallberry-farms",
+					"Bread"
+				],
+				"give": [
+					{
+						"name": "Bread",
+						"quantity": 3
+					}
+				]
+			},
+
+			{
+				"text": [
+					":-scythe:",
+					"#smallberry-farms",
+					"Scythe",
+					"#smallberry-farms",
+					"Scythe"
+				],
+				"give": [
+					{
+						"name": "Scythe",
+						"quantity": 3
+					}
+				]
+			},
+
+			{
+				"text": [
+					":-apple:",
+					"#smallberry-farms",
+					"Apple",
+					"#smallberry-farms",
+					"Apple"
+				],
+				"give": [
+					{
+						"name": "Apple",
+						"quantity": 3
+					}
+				]
+			},
+
+			{
+				"text": [
+					":-ladder:",
+					"#smallberry-farms",
+					"Ladder",
+					"#smallberry-farms",
+					"Ladder"
+				],
+				"give": [
+					{
+						"name": "Ladder",
+						"quantity": 3
+					}
+				]
+			},
+
+			{
+				"text": [
+					":-axe:",
+					"<#C06JF3MERUP|#spooktree-forest>",
+					"Axe",
+					"<#C06JF3MERUP|#spooktree-forest>",
+					"Axe"
+				],
+				"give": [
+					{
+						"name": "Axe",
+						"quantity": 3
+					}
+				]
+			},
+
+			{
+				"text": [
+					":-pickaxe:",
+					"<#C06KJDF425N|#hillrock-mine>",
+					"Pickaxe",
+					"<#C06KJDF425N|#hillrock-mine>",
+					"Pickaxe"
+				],
+				"give": [
+					{
+						"name": "Pickaxe",
+						"quantity": 3
+					}
+				]
+			},
+
+			{
+				"text": [
+					":-shovel:",
+					"<#C06KJCY58GY|#the-river-sploosh>",
+					"Shovel",
+					"<#C06KJCY58GY|#the-river-sploosh>",
+					"Shovel"
+				],
+				"give": [
+					{
+						"name": "Shovel",
+						"quantity": 3
+					}
+				]
+			}
+		],
+		"text": ">It's been weeks since you saw MOM. Not like, your mother. She visited yesterday. The MOM in question is the Mysterious Old Man. Your mind still occasionally drifts to your eccentric friend, if you could even call him that. But mostly, at this point, you've moved on.\n\n...and then you hear him. Or rather, you hear a bagpipe. Accompanied by the unmistakable sound of a WWII surplus M4A3E8 Sherman tank trundling down the road. And there's only one person who would do a thing like that.\n\nYour suspicions are confirmed when you pull the curtain back and witness the amusing sight of the old man attempting to untangle his beard from the drone pipes without stopping either the music or the tank. He pulls up in front of your house, cuts the engine, stashes his bagpipe and hops out. You greet him at the door, and before you can say anything he shouts:\n\nYOU! You there! I've come to bring you something: this lovely {{replace}} Bread! I highly recommend you go to {{replace}} and run /use {{replace}}. You may be surprised and delighted by the rewards!!\n\nThis man has terrible breath. You open your mouth to respond, but he's already running back to his massive vehicle. The music starts back up and all you can do is watch him slowly advance to the next house down the road.\n\nActually, that's not all you can do. You could also go to {{replace}} right now and run /use {{replace}}.",
+		"next": "complete",
+		"pause": true
 	}
 }
