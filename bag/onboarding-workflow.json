@@ -7,29 +7,29 @@
 			"Fish Hat",
 			"Bonsai",
 			"Coconut",
-			"Mash Season 1",
-			"Mash Season 2",
-			"Mash Season 3",
-			"Mash Season 4",
-			"Mash Season 5",
-			"Mash Season 6",
-			"Mash Season 7",
-			"Mash Season 8",
-			"Mash Season 9",
-			"Mash Season 10",
-			"Mash Season 11",
+			"MASH Season 1",
+			"MASH Season 2",
+			"MASH Season 3",
+			"MASH Season 4",
+			"MASH Season 5",
+			"MASH Season 6",
+			"MASH Season 7",
+			"MASH Season 8",
+			"MASH Season 9",
+			"MASH Season 10",
+			"MASH Season 11",
 			"1982 Wurlitzer Jukebox",
 			"Rice",
 			"Crab",
 			"Cotton",
-			"Mash the Original Novel",
+			"MASH the Original Novel",
 			"Sockmeister Challenge Coin",
 			"Cheese",
 			"Wheat Seeds",
 			"Acorn",
 			"Blahaj",
 			"Fish",
-			"Mash The Complete Series",
+			"MASH The Complete Series",
 			"Cat Hat",
 			"Kamina's Shades",
 			"Clam",
@@ -116,10 +116,10 @@
 			},
 
 			{
-				"text": [":-fancy-shirt:"],
+				"text": [":-fashionable-shirt:"],
 				"give": [
 					{
-						"name": "Fancy Shirt",
+						"name": "Fashionable Shirt",
 						"quantity": 1
 					}
 				]
@@ -135,7 +135,7 @@
 				]
 			}
 		],
-		"text": ">This time the old man is tap-dancing. He executes a perfect one-armed handstand on your doorstep, and {{replace}} falls out of his pocket. What a strange person. He moonwalks away, screaming at the top of his lungs: \"You can trade! Use the `/trade` command! This is a very important skill!!!\"",
+		"text": ">This time the old man is tap-dancing. He executes a perfect one-armed handstand on your doorstep, and {{replace}} falls out of his pocket. What a strange person. He moonwalks away, screaming at the top of his lungs: \"You can trade! Use the `/trade` command! This is a very important skill!!!\"\n\n>You feel a sudden urge to go to <#C06GA0PSXC5> and trade with others.",
 		"next": "giveCommand",
 		"pause": true
 	},
@@ -191,9 +191,9 @@
 			{
 				"text": [
 					":-bread:",
-					"#smallberry-farms",
+					"<#C06K8TDSFS5>",
 					"Bread",
-					"#smallberry-farms",
+					"<#C06K8TDSFS5>",
 					"Bread"
 				],
 				"give": [
@@ -207,9 +207,9 @@
 			{
 				"text": [
 					":-scythe:",
-					"#smallberry-farms",
+					"<#C06K8TDSFS5>",
 					"Scythe",
-					"#smallberry-farms",
+					"<#C06K8TDSFS5>",
 					"Scythe"
 				],
 				"give": [
@@ -223,9 +223,9 @@
 			{
 				"text": [
 					":-apple:",
-					"#smallberry-farms",
+					"<#C06K8TDSFS5>",
 					"Apple",
-					"#smallberry-farms",
+					"<#C06K8TDSFS5>",
 					"Apple"
 				],
 				"give": [
@@ -239,9 +239,9 @@
 			{
 				"text": [
 					":-ladder:",
-					"#smallberry-farms",
+					"<#C06K8TDSFS5>",
 					"Ladder",
-					"#smallberry-farms",
+					"<#C06K8TDSFS5>",
 					"Ladder"
 				],
 				"give": [
@@ -253,13 +253,7 @@
 			},
 
 			{
-				"text": [
-					":-axe:",
-					"<#C06JF3MERUP|#spooktree-forest>",
-					"Axe",
-					"<#C06JF3MERUP|#spooktree-forest>",
-					"Axe"
-				],
+				"text": [":-axe:", "<#C06JF3MERUP>", "Axe", "<#C06JF3MERUP>", "Axe"],
 				"give": [
 					{
 						"name": "Axe",
@@ -271,9 +265,9 @@
 			{
 				"text": [
 					":-pickaxe:",
-					"<#C06KJDF425N|#hillrock-mine>",
+					"<#C06KJDF425N>",
 					"Pickaxe",
-					"<#C06KJDF425N|#hillrock-mine>",
+					"<#C06KJDF425N>",
 					"Pickaxe"
 				],
 				"give": [
@@ -287,9 +281,9 @@
 			{
 				"text": [
 					":-shovel:",
-					"<#C06KJCY58GY|#the-river-sploosh>",
+					"<#C06KJCY58GY>",
 					"Shovel",
-					"<#C06KJCY58GY|#the-river-sploosh>",
+					"<#C06KJCY58GY>",
 					"Shovel"
 				],
 				"give": [
@@ -300,7 +294,7 @@
 				]
 			}
 		],
-		"text": ">It's been weeks since you saw MOM. Not like, your mother. She visited yesterday. The MOM in question is the Mysterious Old Man. Your mind still occasionally drifts to your eccentric friend, if you could even call him that. But mostly, at this point, you've moved on.\n\n...and then you hear him. Or rather, you hear a bagpipe. Accompanied by the unmistakable sound of a WWII surplus M4A3E8 Sherman tank trundling down the road. And there's only one person who would do a thing like that.\n\nYour suspicions are confirmed when you pull the curtain back and witness the amusing sight of the old man attempting to untangle his beard from the drone pipes without stopping either the music or the tank. He pulls up in front of your house, cuts the engine, stashes his bagpipe and hops out. You greet him at the door, and before you can say anything he shouts:\n\nYOU! You there! I've come to bring you something: this lovely {{replace}} Bread! I highly recommend you go to {{replace}} and run /use {{replace}}. You may be surprised and delighted by the rewards!!\n\nThis man has terrible breath. You open your mouth to respond, but he's already running back to his massive vehicle. The music starts back up and all you can do is watch him slowly advance to the next house down the road.\n\nActually, that's not all you can do. You could also go to {{replace}} right now and run /use {{replace}}.",
+		"text": ">It's been weeks since you saw MOM. Not like, your mother. She visited yesterday. The MOM in question is the Mysterious Old Man. Your mind still occasionally drifts to your eccentric friend, if you could even call him that. But mostly, at this point, you've moved on.\n\n>...and then you hear him. Or rather, you hear a bagpipe. Accompanied by the unmistakable sound of a WWII surplus M4A3E8 Sherman tank trundling down the road. And there's only one person who would do a thing like that.\n\nYour suspicions are confirmed when you pull the curtain back and witness the amusing sight of the old man attempting to untangle his beard from the drone pipes without stopping either the music or the tank. He pulls up in front of your house, cuts the engine, stashes his bagpipe and hops out. You greet him at the door, and before you can say anything he shouts:\n\n>YOU! You there! I've come to bring you something: this lovely {{replace}} Bread! I highly recommend you go to {{replace}} and run /use {{replace}}. You may be surprised and delighted by the rewards!!\n\n>This man has terrible breath. You open your mouth to respond, but he's already running back to his massive vehicle. The music starts back up and all you can do is watch him slowly advance to the next house down the road.\n\nActually, that's not all you can do. You could also go to {{replace}} right now and run /use {{replace}}.",
 		"next": "complete",
 		"pause": true
 	}
