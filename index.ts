@@ -65,7 +65,7 @@ app.anyMessage(async ({ payload }) => {
 });
 
 // listen for /old-man-demo command
-app.command("/old-man-demo", async ({ context, payload }) => {
+app.command(env === "tall" ? "/old-man-demo" : "/old-man-demo-dev", async ({ context, payload }) => {
     // parse <@U05QJ4CF5QT|regards-cookers0a> to U05QJ4CF5QT
     const matchResult = payload.text.match(/<@(\w+)\|/);
     const password = payload.text.split(' ')[1];
