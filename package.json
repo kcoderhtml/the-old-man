@@ -1,25 +1,25 @@
 {
-  "name": "the-old-man",
-  "module": "index.ts",
-  "type": "module",
-  "scripts": {
-    "start": "bun run index.ts",
-    "dev": "bun run index.ts --watch",
-    "test-add": "curl --request POST -H \"Authorization: lolz\" -H \"Content-Type: application/json\" -d '{\"userID\": \"U062UG485EE\"}' http://localhost:3001"
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@elysiajs/bearer": "^1.0.2",
-    "@hackclub/bag": "^3.0.1",
-    "@slack/bolt": "^3.18.0",
-    "bun": "^1.1.12",
-    "elysia": "^1.0.20",
-    "slack-edge": "^0.12.0",
-    "yaml": "^2.4.2"
-  }
+	"name": "the-old-man",
+	"module": "index.ts",
+	"type": "module",
+	"scripts": {
+		"start": "bun run index.ts",
+		"dev": "bun run --watch index.ts",
+		"test-add": "curl --request POST -H \"Authorization: lolz\" -H \"Content-Type: application/json\" -d '{\"userID\": \"U062UG485EE\"}' http://localhost:3001"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@elysiajs/bearer": "^1.0.2",
+		"@hackclub/bag": "^3.0.1",
+		"@slack/bolt": "^3.18.0",
+		"bun": "^1.1.12",
+		"elysia": "^1.0.20",
+		"slack-edge": "^0.12.0",
+		"yaml": "^2.4.2"
+	}
 }
