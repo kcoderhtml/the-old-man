@@ -49,7 +49,7 @@ app.event('member_joined_channel', async ({ context, payload }) => {
     for (const [key, value] of Object.entries(channels.joinMonitor)) {
         if (payload.channel === value) {
             await context.client.chat.postMessage({
-                channel: channels.superDevLog!,
+                channel: lchannel,
                 text: `A new member <@${payload.user}> has joined the ${key} channel!`,
             });
         }
