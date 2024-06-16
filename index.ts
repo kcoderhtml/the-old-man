@@ -95,7 +95,9 @@ app.command(env === "tall" ? "/old-man-demo" : "/old-man-demo-dev", async ({ con
         text: `The old man was triggered for ${payload.text}! :evergreen_tree: :axe:`,
     });
 
-    await welcome(userID, app.client);
+    setTimeout(async () => {
+        await welcome(userID, app.client);
+    }, 0);
 });
 
 export default {
