@@ -56,14 +56,6 @@ app.event('member_joined_channel', async ({ context, payload }) => {
     }
 });
 
-// liste for any message
-app.anyMessage(async ({ payload }) => {
-    // check if the message is from a bot
-    if (payload.subtype === undefined && payload.user) {
-        await onboardingStep(payload.user, app.client, true);
-    }
-});
-
 // listen for /old-man-demo command
 app.command(env === "tall" ? "/old-man-demo" : "/old-man-demo-dev", async ({ context, payload }) => {
     // parse <@U05QJ4CF5QT|regards-cookers0a> to U05QJ4CF5QT
