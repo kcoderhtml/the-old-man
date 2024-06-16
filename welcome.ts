@@ -47,7 +47,7 @@ export async function welcome(userID: string, client: SlackAPIClient) {
             const randomItems = items.sort(() => 0.5 - Math.random()).slice(0, 3);
             for (const item of randomItems) {
                 console.log("Giving item", item);
-                await $`node bag/give-item.js ${userID} ${item} 1`;
+                await $`node bag/give-item.js ${userID} ${"'" + item + "'"} 1`;
             }
         }
 
@@ -137,14 +137,32 @@ export async function onboardingStep(userID: string, client: SlackAPIClient, sla
     if (onboarding[step].give !== undefined && onboarding[step].give.length > 0) {
         for (const item of onboarding[step].give) {
             console.log("Giving item", item.name, item.quantity);
-            await $`node bag/give-item.js ${userID} ${item.name} ${item.quantity}`;
+            await $`node bag/give-item.js ${userID} ${"'" + item.name + "'"} ${item.quantity}`;
+        }
+    }
+
+    let text: string = onboarding[step].text;
+
+    // check if randomReplace is defined
+    if (onboarding[step].randomReplace !== undefined && onboarding[step].randomReplace.length > 0) {
+        // pick a random item from the list
+        const randomReplace = onboarding[step].randomReplace[Math.floor(Math.random() * onboarding[step].randomReplace.length)];
+        // for item in randomReplace.text replace {{replace}} in text with its value
+        for (const item of randomReplace.text) {
+            text = text.replace("{{replace}}", item);
+        }
+
+        // give items in randomReplace.give
+        for (const item of randomReplace.give) {
+            console.log("Giving item", item);
+            await $`node bag/give-item.js ${userID} ${"'" + item.name + "'"} ${item.quantity}`;
         }
     }
 
     // if they haven't, send the next message
     await client.chat.postMessage({
         channel: userID,
-        text: onboarding[step].text,
+        text: text,
     });
 
     // update the user's metadata to reflect the next step
