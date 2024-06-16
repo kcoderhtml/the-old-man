@@ -32,10 +32,19 @@ itemIds.forEach((itemId) => {
 });
 
 console.log("instances: ", instances);
-
-await bagApp.createInstances({
-	identityId: identityId,
-	instances: instances,
-	show: true,
-	note: message,
-});
+if (instances.length > 1) {
+	await bagApp.createInstances({
+		identityId: identityId,
+		instances: instances,
+		show: true,
+		note: message,
+	});
+} else {
+	await bagApp.createInstance({
+		identityId: identityId,
+		itemId: instances[0].itemId,
+		quantity: instances[0].quantity,
+		show: true,
+		note: message,
+	});
+}
