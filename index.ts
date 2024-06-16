@@ -50,7 +50,7 @@ app.event('member_joined_channel', async ({ context, payload }) => {
         if (payload.channel === value) {
             await context.client.chat.postMessage({
                 channel: lchannel,
-                text: `A new member <@${payload.user}> has joined the ${key} channel!`,
+                text: `A new member <@${payload.user}> has joined the <#${value}> channel!`,
             });
         }
     }
