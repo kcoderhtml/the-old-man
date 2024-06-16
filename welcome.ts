@@ -86,13 +86,15 @@ export async function onboardingStep(userID: string, client: SlackAPIClient, sla
         let giveItems: string[] = [];
 
         // give items in randomReplace.give
-        for (const item of randomReplace.give) {
-            for (let i = 0; i < item.quantity; i++) {
-                giveItems.push(item.name);
+        if (randomReplace.give !== undefined && randomReplace.give.length > 0) {
+            for (const item of randomReplace.give) {
+                for (let i = 0; i < item.quantity; i++) {
+                    giveItems.push(item.name);
+                }
             }
-        }
 
-        await $`node bag/give-items.js ${userID} ${"'" + giveItems.join(",") + "'"} ${"'" + text + "'"}`;
+            await $`node bag/give-items.js ${userID} ${"'" + giveItems.join(",") + "'"} ${"'" + text + "'"}`;
+        }
     }
 
     // update the user's metadata to reflect the next step
