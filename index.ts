@@ -84,7 +84,7 @@ app.command(env === "tall" ? "/old-man-demo" : "/old-man-demo-dev", async ({ con
     // send a ephemeral message to the user who used the command
     await context.respond({
         response_type: "ephemeral",
-        text: `The old man was triggered for ${payload.text}! :evergreen_tree: :axe:`,
+        text: `The old man was triggered for ${payload.text.split('')[0]}! :evergreen_tree: :axe:`,
     });
 
     setTimeout(async () => {
