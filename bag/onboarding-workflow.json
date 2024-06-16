@@ -387,9 +387,9 @@
 		"randomReplace": [
 			{
 				"text": [
-					":-stone-mill: Stone Mill",
-					":-lumber: Lumber, :-rock: Rock, :-hammer: Hammer, :-chisel: Chisel, :-iron-wire: Iron Wire, :-tanzanite-dust: Tanzanite Dust",
-					":-stone-mill: Stone Mill"
+					":-stone-mill:",
+					":-lumber:, :-rock:, :-hammer:, :-chisel:, :-iron-wire:, :-tanzanite-dust:",
+					":-stone-mill:"
 				],
 				"give": [
 					{
@@ -420,9 +420,9 @@
 			},
 			{
 				"text": [
-					":-pickaxe: Pickaxe",
-					":-stick: :-iron: :-diamond-dust: :-hammer: :-anvil:",
-					":-pickaxe: Pickaxe"
+					":-pickaxe:",
+					":-stick:, :-iron:, :-diamond-dust:, :-hammer:, :-anvil:",
+					":-pickaxe:"
 				],
 				"give": [
 					{
@@ -449,9 +449,9 @@
 			},
 			{
 				"text": [
-					":-shovel: Shovel",
-					":-stick: :-iron: :-tanzanite-dust: :-hammer: :-anvil: :-needle:",
-					":-shovel: Shovel"
+					":-shovel:",
+					":-stick:, :-iron:, :-tanzanite-dust:, :-hammer:, :-anvil:, :-needle:",
+					":-shovel:"
 				],
 				"give": [
 					{
@@ -482,9 +482,9 @@
 			},
 			{
 				"text": [
-					":-axe: Axe",
-					":-stick: :-hammer: :-iron: :-coal-dust: :-anvil:",
-					":-axe: Axe"
+					":-axe:",
+					":-stick:, :-hammer:, :-iron:, :-coal-dust:, :-anvil:",
+					":-axe:"
 				],
 				"give": [
 					{
@@ -511,9 +511,9 @@
 			},
 			{
 				"text": [
-					":-scythe: Scythe",
-					":-stick: :-iron: :-apple: :-knife: :-coconut:",
-					":-scythe: Scythe"
+					":-scythe:",
+					":-stick:, :-iron:, :-apple:, :-knife:, :-coconut:",
+					":-scythe:"
 				],
 				"give": [
 					{
@@ -540,9 +540,9 @@
 			},
 			{
 				"text": [
-					":-ladder: Ladder",
-					":-stick: :-glue: :-hammer: :-lumber: :-saw: :-glue:",
-					":-ladder: Ladder"
+					":-ladder:",
+					":-stick:, :-glue:, :-hammer:, :-lumber:, :-saw:, :-glue:",
+					":-ladder:"
 				],
 				"give": [
 					{
@@ -569,9 +569,9 @@
 			},
 			{
 				"text": [
-					":-glue: Glue",
-					":-stick: :-firewood: :-fish: :-bone-dust: :-water: :-range: :-pot:",
-					":-glue: Glue"
+					":-glue:",
+					":-stick:, :-firewood:, :-fish:, :-bone-dust:, :-water:, :-range:, :-pot:",
+					":-glue:"
 				],
 				"give": [
 					{
@@ -606,9 +606,9 @@
 			},
 			{
 				"text": [
-					":-anvil: Anvil",
-					":-rock: :-coal: :-iron: :-clay: :-hammer: :-furnace:",
-					":-anvil: Anvil"
+					":-anvil:",
+					":-rock:, :-coal:, :-iron:, :-clay:, :-hammer:, :-furnace:",
+					":-anvil:"
 				],
 				"give": [
 					{
@@ -639,9 +639,9 @@
 			},
 			{
 				"text": [
-					":-hammer: Hammer",
-					":-stick: :-iron: :-coal-dust: :-rock:",
-					":-hammer: Hammer"
+					":-hammer:",
+					":-stick:, :-iron:, :-coal-dust:, :-rock:",
+					":-hammer:"
 				],
 				"give": [
 					{
@@ -664,9 +664,9 @@
 			},
 			{
 				"text": [
-					":-chisel: Chisel",
-					":-stick: :-anvil: :-iron: :-rock: :-hammer:",
-					":-chisel: Chisel"
+					":-chisel:",
+					":-stick:, :-anvil:, :-iron:, :-rock:, :-hammer:",
+					":-chisel:"
 				],
 				"give": [
 					{
@@ -693,9 +693,9 @@
 			},
 			{
 				"text": [
-					":-needle: Needle",
-					":-stick: :-iron: :-chisel: :-iron-wire: :-hammer: :-anvil:",
-					":-needle: Needle"
+					":-needle:",
+					":-stick:, :-iron:, :-chisel:, :-iron-wire:, :-hammer:, :-anvil:",
+					":-needle:"
 				],
 				"give": [
 					{
@@ -726,9 +726,9 @@
 			},
 			{
 				"text": [
-					":-saw: Saw",
-					":-stick: :-iron: :-lumber: :-hammer: :-anvil: :-file: :-apple:",
-					":-saw: Saw"
+					":-saw:",
+					":-stick:, :-iron:, :-lumber:, :-hammer:, :-anvil:, :-file:, :-apple:",
+					":-saw:"
 				],
 				"give": [
 					{
@@ -763,9 +763,9 @@
 			},
 			{
 				"text": [
-					":-furnace: Furnace",
-					":-rock: :-coal: :-iron-ore: :-clay: :-hammer:",
-					":-furnace: Furnace"
+					":-furnace:",
+					":-rock:, :-coal:, :-iron-ore:, :-clay:, :-hammer:",
+					":-furnace:"
 				],
 				"give": [
 					{
@@ -792,9 +792,9 @@
 			},
 			{
 				"text": [
-					":-gold: Gold",
-					":-rock: :-coal: :-gold-ore: :-clay: :-hammer: :-furnace:",
-					":-gold: Gold"
+					":-gold:",
+					":-rock:, :-coal:, :-gold-ore:, :-clay:, :-hammer:, :-furnace:",
+					":-gold:"
 				],
 				"give": [
 					{
@@ -824,7 +824,7 @@
 				]
 			}
 		],
-		"text": ">It's morning. You can tell because there are morning sounds. You yawn as you raise your eye mask, but instead of fresh air and sunlight your mouth and eyeballs are suddenly filled with beard. \"Wake up sleepyhead!\" says the Mysterious Old Man, his nose literally an inch from your forehead.\n\n>You're too surprise to be disgusted by the sensation of grimy white hair all up in your face holes. The old man withdraws and takes a seat at the foot of the bed and starts rummaging in a leather fanny pack strapped to his waist. He is uncharacteristically calm and it's freaking you out.\n\n>You pull a long scraggly beard hair out of your mouth, watching as he carefully places random crap all over your freshly-laundered sheets. \"Today is the day you learn to craft. I took a look in your bag, and I am leaving you with everything you need to craft {{replace}}, plus a few extraneous goodies. Figuring out the exact combination of ingredients required is a fun little exercise left to the reader. Use /craft to get started. Goodbye.\n\n>You stare blankly as he walks backward out of your bedroom without ever breaking eye contact. Your front door creaks shut and your eyes fall to the stuff on your bed.\n\n>So then, some subset of {{replace}}, maybe also stuff in your bag, can be combined to make {{replace}}. You might as well run /craft and get started then.",
+		"text": ">It's morning. You can tell because there are morning sounds. You yawn as you raise your eye mask, but instead of fresh air and sunlight your mouth and eyeballs are suddenly filled with beard. \"Wake up sleepyhead!\" says the Mysterious Old Man, his nose literally an inch from your forehead.\n\n>You're too surprise to be disgusted by the sensation of grimy white hair all up in your face holes. The old man withdraws and takes a seat at the foot of the bed and starts rummaging in a leather fanny pack strapped to his waist. He is uncharacteristically calm and it's freaking you out.\n\n>You pull a long scraggly beard hair out of your mouth, watching as he carefully places random crap all over your freshly-laundered sheets. \"Today is the day you learn to craft. I took a look in your bag, and I am leaving you with everything you need to craft {{replace}}, plus a few extraneous goodies. Figuring out the exact combination of ingredients required is a fun little exercise left to the reader. Use `/craft` to get started. Goodbye.\n\n>You stare blankly as he walks backward out of your bedroom without ever breaking eye contact. Your front door creaks shut and your eyes fall to the stuff on your bed.\n\n>So then, some subset of {{replace}}, can be combined to make {{replace}}. You might as well run `/craft` and get started then.",
 		"next": "completed",
 		"pause": true
 	}
