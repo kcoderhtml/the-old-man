@@ -1,6 +1,6 @@
 {
 	"introduction": {
-		"text": ">An mysterious old man comes by your home with a jaunty stroll, whistling as he goes. He throws a bag at your door, which bounces off and lands on your doorstep. You pick the bag up, feeling three objects inside. Some instructions are printed on the outside: *This is your bag. Use `/bag` to see what it holds.*",
+		"text": ">A mysterious old man comes by your home with a jaunty stroll, whistling as he goes. He throws a bag at your door, which bounces off and lands on your doorstep. You pick the bag up, feeling three objects inside. Some instructions are printed on the outside: *This is your bag. Use `/bag` to see what it holds.*",
 		"next": "itemCommand",
 		"randomGive": [
 			"Hairball",
@@ -176,7 +176,7 @@
 		"pause": true
 	},
 	"pocketMoney": {
-		"text": ">You look longingly out the window. You haven't seen your mysterious friend for some time now. You stand on your doorstep, thinking how you miss that funny old chap... life feels strangely empty without his antics. But what's that? A tuft of white hair peeks over the horizon. You see a silhouetted figure begin to rotate, spinning faster and faster, before releasing something with the perfect form of an Olympic-level hammer throw. Time stands still as you fixate on the object sailing toward you. The arc it makes through the atmosphere is beautiful. Poetic. Like a rainbow. And then, it hits you. Literally, you get beaned in the head by a rather heavy bag. Good thing you were wearing your favorite 1951 standard-issue US Army Korean War helmet. WWII surplus, to get into the mood for watching a little MASH this morning. You pick the bag up, feeling that it's full of gp, and look up to see the old man is gone once again. But you hear a cry from over the hill: I almost forgot, a little pocket money to stimulate the economyyyyyyyy!",
+		"text": ">You look longingly out the window. You haven't seen your mysterious friend for some time now. You stand on your doorstep, thinking how you miss that funny old chap... life feels strangely empty without his antics. But what's that? A tuft of white hair peeks over the horizon. You see a silhouetted figure begin to rotate, spinning faster and faster, before releasing something with the perfect form of an Olympic-level hammer throw. Time stands still as you fixate on the object sailing toward you. The arc it makes through the atmosphere is beautiful. Poetic. Like a rainbow. And then, it hits you. Literally, you get beaned in the head by a rather heavy bag. Good thing you were wearing your favorite 1951 standard-issue US Army Korean War helmet. WWII surplus, to get into the mood for watching a little MASH this morning. You pick the bag up, feeling that it's full of gp, and look up to see the old man is gone once again. But you hear a cry from over the hill: \"I almost forgot, a little pocket money to stimulate the economyyyyyyyy!\" You open the bag and count the gp. There are 85 of them. You feel a sudden urge to go and start a business. Or maybe just spend it all on :-glue:.",
 		"next": "useCommand",
 		"give": [
 			{

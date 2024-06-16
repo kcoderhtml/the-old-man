@@ -1,8 +1,8 @@
 import { App as Bag } from "@hackclub/bag";
 
 const identityId = process.argv[2];
-const itemIds = process.argv[3].replaceAll("'", "").split(",");
-const message = process.argv[4].replaceAll("'", "");
+const itemIds = process.argv[3].replace(/^'|'$/g, "").split(",");
+const message = process.argv[4].replace(/^'|'$/g, "");
 
 // delete all empty strings
 for (let i = 0; i < itemIds.length; i++) {
