@@ -84,7 +84,7 @@ app.command(env === "tall" ? "/old-man-demo" : "/old-man-demo-dev", async ({ con
     // send a ephemeral message to the user who used the command
     await context.respond({
         response_type: "ephemeral",
-        text: `The old man was triggered for ${payload.text.split('')[0]}! :evergreen_tree: :axe:`,
+        text: `The mysterious old man was triggered for ${payload.text.split('')[0]}! :evergreen_tree: :axe:`,
     });
 
     setTimeout(async () => {
@@ -143,7 +143,7 @@ export default {
 
         await app.client.chat.postMessage({
             channel: lchannel,
-            text: `The old man toddles off in the direction of the ${env} forest. :evergreen_tree: :axe:`,
+            text: `The Mysterious Old Man toddles off in the direction of the ${env} forest. :evergreen_tree: :axe:`,
         });
     } catch (error) {
         console.error(error);
