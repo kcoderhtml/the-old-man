@@ -39,7 +39,6 @@ export async function welcome(userID: string, client: SlackAPIClient) {
             // pick 3 random items from the list that aren't the same
             const items: string[] = onboarding.introduction.randomGive;
             const randomItems = items.sort(() => 0.5 - Math.random()).slice(0, 3);
-            console.log("welcoming user with items", randomItems);
 
             await $`node bag/give-items.js ${userID} ${"'" + randomItems.join(",") + "'"} ${"'" + onboarding.introduction.text + "'"}`;
         }
@@ -84,7 +83,6 @@ export async function onboardingStep(userID: string, client: SlackAPIClient, sla
             }
         }
 
-        console.log("giving items", giveItems);
         await $`node bag/give-items.js ${userID} ${"'" + giveItems.join(",") + "'"} ${"'" + onboarding[step].text + "'"}`;
     }
 
@@ -108,7 +106,6 @@ export async function onboardingStep(userID: string, client: SlackAPIClient, sla
             }
         }
 
-        console.log("giving items", giveItems);
         await $`node bag/give-items.js ${userID} ${"'" + giveItems.join(",") + "'"} ${"'" + text + "'"}`;
     }
 
