@@ -1,6 +1,6 @@
 import { SlackApp } from "slack-edge";
 import { Elysia } from 'elysia';
-import { welcome, updateItemIdData, onboardingStep } from './welcome';
+import { welcome, onboardingStep } from './welcome';
 
 const channels = {
     superDevLog: process.env.SUPER_DEV_LOG_CHANNEL || "",
@@ -110,9 +110,6 @@ export default {
 (async () => {
     try {
         console.log('⚡️ Bolt app is running!');
-
-        console.log('💰 Updating Bag Data...');
-        await updateItemIdData();
 
         // setup endpoint for Elysia
         const elysia = new Elysia()

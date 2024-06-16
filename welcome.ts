@@ -1,19 +1,5 @@
 import { $ } from "bun";
 import type { SlackAPIClient } from "slack-edge";
-import { parse } from "yaml";
-
-let bagData: {
-    name: string;
-    tag: string;
-    artist: string;
-    description: string;
-    frequency: null | number;
-    intended_value_atus: number;
-    intended_value_gp: number;
-    genstore_sell_to_player_price: number;
-    genstore_buy_from_player_price: number;
-    genstore_price_variance: number;
-}[]
 
 export async function welcome(userID: string, client: SlackAPIClient) {
     if (process.env.NODE_ENV === undefined) {
@@ -125,45 +111,6 @@ export async function onboardingStep(userID: string, client: SlackAPIClient, sla
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
     onboardingStep(userID, client, false, onboarding[step].next);
-}
-
-export async function updateItemIdData() {
-    // check if the net worth file exists
-    const file = Bun.file("data/items.yaml");
-
-    console.log("💰 Checking for bag data file...", await file.exists() ? "exists" : "doesn't exist");
-
-    // if it doesn't exist, create it
-    if (!await file.exists()) {
-        const response = await fetch("https://raw.githubusercontent.com/rivques/bag-manifest/production/items.yaml")
-
-        if (response.ok) {
-            const text = await response.text();
-            Bun.write("data/items.yaml", text);
-            console.log("💰 Bag data created successfully! 🎉");
-        } else {
-            console.error("💰 Failed to fetch bag data file", response.statusText);
-        }
-    } else {
-        // if it exists check if it's up to date
-        const response = await fetch("https://raw.githubusercontent.com/rivques/bag-manifest/production/items.yaml")
-        const text = await response.text();
-        const local = await Bun.file("data/items.yaml").text();
-
-        if (!response.ok) {
-            console.error("💰 Failed to fetch bag data file", response.statusText);
-            return;
-        }
-
-        if (text !== local) {
-            Bun.write("data/items.yaml", text);
-            console.log("💰 Bag data updated successfully! 🎉");
-        } else {
-            console.log("💰 Bag data is up to date! 🎉");
-        }
-    }
-
-    bagData = parse(await Bun.file("data/items.yaml").text());
 }
 
 async function getUserMetadata(userID: string) {
