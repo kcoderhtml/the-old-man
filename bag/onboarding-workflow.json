@@ -380,6 +380,451 @@
 			}
 		],
 		"text": ">It's been weeks since you saw MOM. Not, like, your mother. She visited yesterday. The MOM in question is the Mysterious Old Man. Your mind still occasionally drifts to your eccentric friend, if you could even call him that. But mostly, at this point, you've moved on.\n\n>...and then you hear him. Or rather, you hear a bagpipe. Accompanied by the unmistakable sound of a WWII surplus M4A3E8 Sherman tank trundling down the road. And there's only one person who would do a thing like that.\n\n>Your suspicions are confirmed when you pull the curtain back and witness the amusing sight of the old man attempting to untangle his beard from the drone pipes without stopping either the music or the tank. He pulls up in front of your house, cuts the engine, stashes his bagpipe and hops out. You greet him at the door, and before you can say anything he shouts:\n\n>YOU! You there! I've come to bring you something: this lovely {{replace}}! I highly recommend you go to {{replace}} and run `/use {{replace}}`. You may be surprised and delighted by the rewards!!\n\n>This man has terrible breath. You open your mouth to respond, but he's already running back to his massive vehicle. The music starts back up and all you can do is watch him slowly advance to the next house down the road.\n\n>Actually, that's not all you can do. You could also go to {{replace}} right now and run `/use {{replace}}`.",
+		"next": "craftCommand",
+		"pause": true
+	},
+	"craftCommand": {
+		"randomReplace": [
+			{
+				"text": [
+					":-stone-mill: Stone Mill",
+					":-lumber: Lumber, :-rock: Rock, :-hammer: Hammer, :-chisel: Chisel, :-iron-wire: Iron Wire, :-tanzanite-dust: Tanzanite Dust",
+					":-stone-mill: Stone Mill"
+				],
+				"give": [
+					{
+						"name": "Lumber",
+						"quantity": 1
+					},
+					{
+						"name": "Rock",
+						"quantity": 2
+					},
+					{
+						"name": "Hammer",
+						"quantity": 1
+					},
+					{
+						"name": "Chisel",
+						"quantity": 1
+					},
+					{
+						"name": "Iron Wire",
+						"quantity": 2
+					},
+					{
+						"name": "Tanzanite Dust",
+						"quantity": 1
+					}
+				]
+			},
+			{
+				"text": [
+					":-pickaxe: Pickaxe",
+					":-stick: :-iron: :-diamond-dust: :-hammer: :-anvil:",
+					":-pickaxe: Pickaxe"
+				],
+				"give": [
+					{
+						"name": "Iron",
+						"quantity": 2
+					},
+					{
+						"name": "Diamond Dust",
+						"quantity": 2
+					},
+					{
+						"name": "Hammer",
+						"quantity": 1
+					},
+					{
+						"name": "Anvil",
+						"quantity": 1
+					},
+					{
+						"name": "Stick",
+						"quantity": 1
+					}
+				]
+			},
+			{
+				"text": [
+					":-shovel: Shovel",
+					":-stick: :-iron: :-tanzanite-dust: :-hammer: :-anvil: :-needle:",
+					":-shovel: Shovel"
+				],
+				"give": [
+					{
+						"name": "Iron",
+						"quantity": 1
+					},
+					{
+						"name": "Tanzanite Dust",
+						"quantity": 1
+					},
+					{
+						"name": "Needle",
+						"quantity": 2
+					},
+					{
+						"name": "Hammer",
+						"quantity": 1
+					},
+					{
+						"name": "Anvil",
+						"quantity": 1
+					},
+					{
+						"name": "Stick",
+						"quantity": 2
+					}
+				]
+			},
+			{
+				"text": [
+					":-axe: Axe",
+					":-stick: :-hammer: :-iron: :-coal-dust: :-anvil:",
+					":-axe: Axe"
+				],
+				"give": [
+					{
+						"name": "Iron",
+						"quantity": 1
+					},
+					{
+						"name": "Coal Dust",
+						"quantity": 5
+					},
+					{
+						"name": "Hammer",
+						"quantity": 1
+					},
+					{
+						"name": "Anvil",
+						"quantity": 1
+					},
+					{
+						"name": "Stick",
+						"quantity": 2
+					}
+				]
+			},
+			{
+				"text": [
+					":-scythe: Scythe",
+					":-stick: :-iron: :-apple: :-knife: :-coconut:",
+					":-scythe: Scythe"
+				],
+				"give": [
+					{
+						"name": "Iron",
+						"quantity": 1
+					},
+					{
+						"name": "Apple",
+						"quantity": 3
+					},
+					{
+						"name": "Knife",
+						"quantity": 1
+					},
+					{
+						"name": "Coconut",
+						"quantity": 1
+					},
+					{
+						"name": "Stick",
+						"quantity": 2
+					}
+				]
+			},
+			{
+				"text": [
+					":-ladder: Ladder",
+					":-stick: :-glue: :-hammer: :-lumber: :-saw: :-glue:",
+					":-ladder: Ladder"
+				],
+				"give": [
+					{
+						"name": "Glue",
+						"quantity": 2
+					},
+					{
+						"name": "Lumber",
+						"quantity": 2
+					},
+					{
+						"name": "Saw",
+						"quantity": 1
+					},
+					{
+						"name": "Hammer",
+						"quantity": 1
+					},
+					{
+						"name": "Stick",
+						"quantity": 4
+					}
+				]
+			},
+			{
+				"text": [
+					":-glue: Glue",
+					":-stick: :-firewood: :-fish: :-bone-dust: :-water: :-range: :-pot:",
+					":-glue: Glue"
+				],
+				"give": [
+					{
+						"name": "Firewood",
+						"quantity": 1
+					},
+					{
+						"name": "Fish",
+						"quantity": 2
+					},
+					{
+						"name": "Bone Dust",
+						"quantity": 1
+					},
+					{
+						"name": "Water",
+						"quantity": 1
+					},
+					{
+						"name": "Range",
+						"quantity": 1
+					},
+					{
+						"name": "Pot",
+						"quantity": 1
+					},
+					{
+						"name": "Stick",
+						"quantity": 3
+					}
+				]
+			},
+			{
+				"text": [
+					":-anvil: Anvil",
+					":-rock: :-coal: :-iron: :-clay: :-hammer: :-furnace:",
+					":-anvil: Anvil"
+				],
+				"give": [
+					{
+						"name": "Rock",
+						"quantity": 2
+					},
+					{
+						"name": "Coal",
+						"quantity": 1
+					},
+					{
+						"name": "Iron",
+						"quantity": 3
+					},
+					{
+						"name": "Clay",
+						"quantity": 1
+					},
+					{
+						"name": "Hammer",
+						"quantity": 1
+					},
+					{
+						"name": "Furnace",
+						"quantity": 1
+					}
+				]
+			},
+			{
+				"text": [
+					":-hammer: Hammer",
+					":-stick: :-iron: :-coal-dust: :-rock:",
+					":-hammer: Hammer"
+				],
+				"give": [
+					{
+						"name": "Iron",
+						"quantity": 1
+					},
+					{
+						"name": "Coal Dust",
+						"quantity": 1
+					},
+					{
+						"name": "Rock",
+						"quantity": 3
+					},
+					{
+						"name": "Stick",
+						"quantity": 2
+					}
+				]
+			},
+			{
+				"text": [
+					":-chisel: Chisel",
+					":-stick: :-anvil: :-iron: :-rock: :-hammer:",
+					":-chisel: Chisel"
+				],
+				"give": [
+					{
+						"name": "Iron",
+						"quantity": 1
+					},
+					{
+						"name": "Rock",
+						"quantity": 1
+					},
+					{
+						"name": "Hammer",
+						"quantity": 1
+					},
+					{
+						"name": "Stick",
+						"quantity": 2
+					},
+					{
+						"name": "Anvil",
+						"quantity": 1
+					}
+				]
+			},
+			{
+				"text": [
+					":-needle: Needle",
+					":-stick: :-iron: :-chisel: :-iron-wire: :-hammer: :-anvil:",
+					":-needle: Needle"
+				],
+				"give": [
+					{
+						"name": "Iron",
+						"quantity": 1
+					},
+					{
+						"name": "Chisel",
+						"quantity": 1
+					},
+					{
+						"name": "Iron Wire",
+						"quantity": 2
+					},
+					{
+						"name": "Hammer",
+						"quantity": 1
+					},
+					{
+						"name": "Anvil",
+						"quantity": 1
+					},
+					{
+						"name": "Stick",
+						"quantity": 2
+					}
+				]
+			},
+			{
+				"text": [
+					":-saw: Saw",
+					":-stick: :-iron: :-lumber: :-hammer: :-anvil: :-file: :-apple:",
+					":-saw: Saw"
+				],
+				"give": [
+					{
+						"name": "Iron",
+						"quantity": 1
+					},
+					{
+						"name": "Lumber",
+						"quantity": 1
+					},
+					{
+						"name": "Hammer",
+						"quantity": 1
+					},
+					{
+						"name": "Anvil",
+						"quantity": 1
+					},
+					{
+						"name": "File",
+						"quantity": 1
+					},
+					{
+						"name": "Apple",
+						"quantity": 1
+					},
+					{
+						"name": "Stick",
+						"quantity": 2
+					}
+				]
+			},
+			{
+				"text": [
+					":-furnace: Furnace",
+					":-rock: :-coal: :-iron-ore: :-clay: :-hammer:",
+					":-furnace: Furnace"
+				],
+				"give": [
+					{
+						"name": "Rock",
+						"quantity": 8
+					},
+					{
+						"name": "Coal",
+						"quantity": 1
+					},
+					{
+						"name": "Iron Ore",
+						"quantity": 1
+					},
+					{
+						"name": "Clay",
+						"quantity": 1
+					},
+					{
+						"name": "Hammer",
+						"quantity": 1
+					}
+				]
+			},
+			{
+				"text": [
+					":-gold: Gold",
+					":-rock: :-coal: :-gold-ore: :-clay: :-hammer: :-furnace:",
+					":-gold: Gold"
+				],
+				"give": [
+					{
+						"name": "Rock",
+						"quantity": 2
+					},
+					{
+						"name": "Coal",
+						"quantity": 2
+					},
+					{
+						"name": "Gold Ore",
+						"quantity": 3
+					},
+					{
+						"name": "Clay",
+						"quantity": 1
+					},
+					{
+						"name": "Hammer",
+						"quantity": 1
+					},
+					{
+						"name": "Furnace",
+						"quantity": 1
+					}
+				]
+			}
+		],
+		"text": ">It's morning. You can tell because there are morning sounds. You yawn as you raise your eye mask, but instead of fresh air and sunlight your mouth and eyeballs are suddenly filled with beard. \"Wake up sleepyhead!\" says the Mysterious Old Man, his nose literally an inch from your forehead.\n\n>You're too surprise to be disgusted by the sensation of grimy white hair all up in your face holes. The old man withdraws and takes a seat at the foot of the bed and starts rummaging in a leather fanny pack strapped to his waist. He is uncharacteristically calm and it's freaking you out.\n\n>You pull a long scraggly beard hair out of your mouth, watching as he carefully places random crap all over your freshly-laundered sheets. \"Today is the day you learn to craft. I took a look in your bag, and I am leaving you with everything you need to craft {{replace}}, plus a few extraneous goodies. Figuring out the exact combination of ingredients required is a fun little exercise left to the reader. Use /craft to get started. Goodbye.\n\n>You stare blankly as he walks backward out of your bedroom without ever breaking eye contact. Your front door creaks shut and your eyes fall to the stuff on your bed.\n\n>So then, some subset of {{replace}}, maybe also stuff in your bag, can be combined to make {{replace}}. You might as well run /craft and get started then.",
 		"next": "completed",
 		"pause": true
 	}
