@@ -87,6 +87,11 @@ app.command(env === "tall" ? "/old-man-demo" : "/old-man-demo-dev", async ({ con
         text: `The mysterious old man was triggered for <@${userID}>! :evergreen_tree: :axe:`,
     });
 
+    await app.client.chat.postMessage({
+        channel: lchannel,
+        text: `Elysia has been summoned for <@${userID}> by <@${payload.user_id}>! :sparkles:; Summoning <@${process.env.SLACK_BOT_ID}> to welcome them... :wave:`,
+    });
+
     setTimeout(async () => {
         await welcome(userID, app.client);
     }, 0);
