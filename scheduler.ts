@@ -7,32 +7,59 @@ export class Job {
     public userID: string | null = null;
     private readonly duration: number;
     public state: "running" | "stopped" | "waiting" = "stopped";
+    public runningPromise: Promise<void> | null = null;
 
-    constructor(duration: number, userID: string, slackClient: SlackAPIClient) {
+    constructor(callback: () => void, duration: number, userID?: string) {
         this.duration = duration;
-        this.userID = userID;
+        this.userID = userID || null;
         this.date = new Date(Date.now() + duration);
-        this.start(slackClient);
+        this.start(callback);
     }
 
-    start(slackClient: SlackAPIClient): void {
+    start(callback: () => void): void {
         if (this.timer === null) {
             this.state = "waiting";
             this.timer = setTimeout(async () => {
-                this.state = "running";
-                await onboardingStep(this.userID!, slackClient);
-                this.timer = null;
-                this.state = "stopped";
+                this.runningPromise = new Promise(async (resolve) => {
+                    this.state = "running";
+                    await callback();
+                    this.timer = null;
+                    this.state = "stopped";
+                    resolve();
+                });
             }, this.duration);
         } else {
             throw new Error("Job is already running");
         }
     }
 
-    stop(): void {
+    async stop(): Promise<void> {
         if (this.timer !== null) {
-            clearTimeout(this.timer);
-            this.timer = null;
+            console.log("Stopping job");
+            // if the job is waiting to run, clear the timeout
+            if (this.state === "waiting") {
+                console.log("Job is waiting");
+                clearTimeout(this.timer);
+                this.timer = null;
+            } else if (this.state === "running") {
+                // if the job is running, wait for it to finish
+                console.log("Job is running");
+                await this.runningPromise;
+            }
+        } else {
+            throw new Error("Job is not running");
+        }
+    }
+
+    async pause(): Promise<void> {
+        if (this.timer !== null) {
+            // if the job is waiting to run, clear the timeout
+            if (this.state === "waiting") {
+                clearTimeout(this.timer);
+            } else if (this.state === "running") {
+                // if the job is running, wait for it to finish
+                throw new Error("Job is running");
+            }
         } else {
             throw new Error("Job is not running");
         }
@@ -52,8 +79,8 @@ export class Scheduler {
         this.slackClient = slackClient;
     }
 
-    addJob(duration: number): void {
-        const job = new Job(duration, "1", this.slackClient!);
+    addJob(callback: () => void, duration: number, slackID?: string): void {
+        const job = new Job(callback, duration, slackID);
 
         this.jobs.push(job);
     }
@@ -63,26 +90,23 @@ export class Scheduler {
     }
 
     async stopAllJobs(): Promise<void> {
+        console.log("Stopping all jobs");
         for (const job of this.jobs) {
-            job.stop();
+            if (job.state !== "stopped") {
+                console.log("Job is running");
+                await job.stop();
+            } else {
+                console.log("Job is stopped");
+            }
         }
 
         this.jobs = [];
     }
 
-    stopJob(index: number): void {
-        if (index >= 0 && index < this.jobs.length) {
-            this.jobs[index].stop();
-            this.jobs.splice(index, 1);
-        } else {
-            throw new Error("Invalid job index");
-        }
-    }
-
     // save all jobs to a file
     async saveJobsToFile(filepath: string): Promise<void> {
         // save jobs to a file as an array of objects
-        const jobsData: JobData[] = this.jobs.filter((job) => job.date !== null).map((job) => {
+        const jobsData: JobData[] = this.jobs.filter((job) => job.date && job.userID).map((job) => {
             return {
                 date: job.date!,
                 userID: job.userID!,
@@ -98,7 +122,9 @@ export class Scheduler {
         const data: JobData[] = await Bun.file(filepath).json();
 
         this.jobs = data.map((jobData) => {
-            const job = new Job((new Date(jobData.date)).getTime() - Date.now(), jobData.userID, this.slackClient!);
+            const job = new Job(() => {
+                onboardingStep(jobData.userID, this.slackClient!, this);
+            }, (new Date(jobData.date)).getTime() - Date.now(), jobData.userID);
             return job;
         });
     }

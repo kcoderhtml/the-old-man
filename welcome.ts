@@ -1,7 +1,8 @@
 import { $ } from "bun";
 import type { SlackAPIClient } from "slack-edge";
+import type { Scheduler } from "./scheduler";
 
-export async function welcome(userID: string, client: SlackAPIClient) {
+export async function welcome(userID: string, client: SlackAPIClient, scheduler: Scheduler) {
     if (process.env.NODE_ENV === undefined) {
         // await clear(userID, client);
         // clear the metadata
@@ -31,11 +32,14 @@ export async function welcome(userID: string, client: SlackAPIClient) {
 
         // update the user's metadata to reflect that they've started the onboarding process
         await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: "introduction" }));
-        onboardingStep(userID, client);
+
+        scheduler.addJob(async () => {
+            await onboardingStep(userID, client, scheduler);
+        }, 1000, userID);
     }
 }
 
-export async function onboardingStep(userID: string, client: SlackAPIClient, slackEvent?: boolean, nextStep?: string) {
+export async function onboardingStep(userID: string, client: SlackAPIClient, scheduler: Scheduler, slackEvent?: boolean, nextStep?: string,) {
     const onboarding = await Bun.file("bag/onboarding-workflow.json").json();
     const metadata = await getUserMetadata(userID);
     let step: string
@@ -111,8 +115,9 @@ export async function onboardingStep(userID: string, client: SlackAPIClient, sla
         return
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    onboardingStep(userID, client, false, onboarding[step].next);
+    scheduler.addJob(async () => {
+        await onboardingStep(userID, client, scheduler, false, onboarding[step].next);
+    }, 1000, userID);
 }
 
 async function getUserMetadata(userID: string) {

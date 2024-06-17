@@ -1,6 +1,8 @@
 import { SlackApp } from "slack-edge";
 import { Elysia } from 'elysia';
-import { welcome, onboardingStep } from './welcome';
+import { welcome } from './welcome';
+
+import { Scheduler } from "./scheduler";
 
 const channels = {
     superDevLog: process.env.SUPER_DEV_LOG_CHANNEL || "",
@@ -92,8 +94,8 @@ app.command(env === "tall" ? "/old-man-demo" : "/old-man-demo-dev", async ({ con
         text: `Elysia has been summoned for <@${userID}> by <@${payload.user_id}>! :sparkles:; Summoning <@${process.env.SLACK_BOT_ID}> to welcome them... :wave:`,
     });
 
-    setTimeout(async () => {
-        await welcome(userID, app.client);
+    scheduler.addJob(async () => {
+        await welcome(userID, app.client, scheduler);
     }, 0);
 });
 
@@ -103,6 +105,9 @@ export default {
         return await app.run(request);
     },
 };
+
+// setup scheduler
+const scheduler = new Scheduler(app.client);
 
 (async () => {
     try {
@@ -130,7 +135,10 @@ export default {
                         text: `Elysia has been summoned for <@${body.userID}>! :sparkles:; Summoning <@${process.env.SLACK_BOT_ID}> to welcome them... :wave:`,
                     });
 
-                    await welcome(body.userID, app.client);
+                    scheduler.addJob(async () => {
+                        await welcome(body.userID, app.client, scheduler);
+                    }, 0);
+
                     return JSON.stringify({ ok: true, userID: body.userID });
                 } catch (error) {
                     console.error('Error parsing JSON:', error);
@@ -154,3 +162,13 @@ export default {
         console.error(error);
     }
 })();
+
+process.on('SIGINT', async function () {
+    console.log('Caught interrupt signal');
+    // list all jobs
+    console.log("Listing all jobs");
+    console.log(scheduler.listJobs().length);
+
+    await scheduler.stopAllJobs();
+    process.exit();
+});
