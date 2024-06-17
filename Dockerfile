@@ -27,6 +27,7 @@ COPY --from=install /temp/prod/node_modules node_modules
 RUN chown -R bun:bun node_modules
 COPY --from=prerelease /usr/src/app/bag bag
 COPY --from=prerelease /usr/src/app/welcome.ts .
+COPY --from=prerelease /usr/src/app/scheduler.ts .
 COPY --from=prerelease /usr/src/app/index.ts .
 COPY --from=prerelease /usr/src/app/package.json .
 # make data directory
