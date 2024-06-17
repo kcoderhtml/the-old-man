@@ -63,6 +63,9 @@ BAG_APP_TOKEN=xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx # should have ADMIN permissions
 BAG_APP_ID=xx
 
 BAG_COMMAND_PASSWORD=xxxxxx
+
+AIRTABLE_API_KEY=xxxxxx.xxxxxxxxxxxxxxxxxxxxxxx
+AIRTABLE_BASE_ID=xxxxxxxxxx/xxxxxxxxx/xxxxxxxxxx
 ```
 
 This project was created using `bun init` in bun v1.1.7. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
