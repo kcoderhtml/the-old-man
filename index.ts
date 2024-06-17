@@ -51,6 +51,11 @@ const scheduler = new Scheduler(app.client);
 await scheduler.loadJobsFromFile("data/jobs.json");
 console.log(`🕰️  Scheduler loaded ${scheduler.listJobs().length} jobs`);
 
+// save jobs to file every 5 minutes
+setInterval(async () => {
+    await scheduler.saveJobsToFile("data/jobs.json");
+}, 300000);
+
 // listen for new members joining the market - town square channels
 app.event('member_joined_channel', async ({ context, payload }) => {
     for (const [key, value] of Object.entries(channels.joinMonitor)) {
