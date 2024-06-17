@@ -33,6 +33,55 @@ export async function welcome(userID: string, client: SlackAPIClient, scheduler:
         // update the user's metadata to reflect that they've started the onboarding process
         await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: "introduction" }));
 
+        if (onboarding.introduction.pause !== undefined && onboarding.introduction.pause === true && process.env.NODE_ENV !== undefined) {
+            // check whether waitTime is defined
+            if (onboarding.introduction.waitTime !== undefined) {
+                // parse the waitTime from the format "1m1h1d" to milliseconds
+                const waitTime = onboarding.introduction.waitTime === "" ? "1d" : onboarding.introduction.waitTime;
+                let milliseconds: number = 0;
+                // split at the letters to get the number and the unit
+                const time = waitTime.match(/\d+\w/g);
+                // check if time is not null
+                if (time !== null) {
+                    // iterate over the time array
+                    for (const t of time) {
+                        // get the number and the unit
+                        const number = parseInt(t.match(/\d+/)![0]);
+                        const unit = t.match(/\w+/)![0][1];
+
+                        // add the milliseconds to the total
+                        switch (unit) {
+                            case "s":
+                                milliseconds += number * 1000;
+                                break;
+                            case "m":
+                                milliseconds += number * 60000;
+                                break;
+                            case "h":
+                                milliseconds += number * 3600000;
+                                break;
+                            case "d":
+                                milliseconds += number * 86400000;
+                                break;
+                            default:
+                                // handle the case when the unit is not recognized
+                                console.log(`❌ Invalid time unit: ${unit}`);
+                                milliseconds = 86400000
+                                break;
+                        }
+                    }
+                } else {
+                    console.log(`❌ Invalid time string: ${waitTime}`);
+                    milliseconds = 86400000
+                }
+
+                scheduler.addJob(async () => {
+                    await onboardingStep(userID, client, scheduler, true);
+                }, milliseconds, userID);
+            }
+            return
+        }
+
         scheduler.addJob(async () => {
             await onboardingStep(userID, client, scheduler);
         }, 10000, userID);
