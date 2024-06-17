@@ -35,7 +35,7 @@ export async function welcome(userID: string, client: SlackAPIClient, scheduler:
 
         scheduler.addJob(async () => {
             await onboardingStep(userID, client, scheduler);
-        }, 1000, userID);
+        }, 10000, userID);
     }
 }
 
@@ -117,7 +117,7 @@ export async function onboardingStep(userID: string, client: SlackAPIClient, sch
 
     scheduler.addJob(async () => {
         await onboardingStep(userID, client, scheduler, false, onboarding[step].next);
-    }, 1000, userID);
+    }, 10000, userID);
 }
 
 async function getUserMetadata(userID: string) {

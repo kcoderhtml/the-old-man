@@ -6,7 +6,7 @@ export class Job {
     public date: Date | null = null;
     public userID: string | null = null;
     private readonly duration: number;
-    public state: "running" | "stopped" | "waiting" = "stopped";
+    public state: "running" | "stopped" | "waiting" | "paused" = "stopped";
     public runningPromise: Promise<void> | null = null;
 
     constructor(callback: () => void, duration: number, userID?: string) {
@@ -56,6 +56,8 @@ export class Job {
             // if the job is waiting to run, clear the timeout
             if (this.state === "waiting") {
                 clearTimeout(this.timer);
+                this.timer = null;
+                this.state = "paused";
             } else if (this.state === "running") {
                 // if the job is running, wait for it to finish
                 throw new Error("Job is running");
@@ -91,22 +93,29 @@ export class Scheduler {
 
     async stopAllJobs(): Promise<void> {
         console.log("Stopping all jobs");
+        const stopPromises: Promise<void>[] = [];
+        let alreadyStopped: number = 0;
+
         for (const job of this.jobs) {
             if (job.state !== "stopped") {
-                console.log("Job is running");
-                await job.stop();
+                const stopPromise = job.pause();
+                stopPromises.push(stopPromise);
             } else {
-                console.log("Job is stopped");
+                // remove the job from the list if it's already stopped
+                this.jobs.splice(alreadyStopped, 1);
+                alreadyStopped++;
             }
         }
 
-        this.jobs = [];
+        await Promise.all(stopPromises);
     }
 
     // save all jobs to a file
     async saveJobsToFile(filepath: string): Promise<void> {
+        console.log("Saving jobs to file");
+
         // save jobs to a file as an array of objects
-        const jobsData: JobData[] = this.jobs.filter((job) => job.date && job.userID).map((job) => {
+        const jobsData: JobData[] = this.jobs.filter((job) => job.date && job.userID && job.state !== "stopped").map((job) => {
             return {
                 date: job.date!,
                 userID: job.userID!,

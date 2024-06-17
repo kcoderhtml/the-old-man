@@ -46,6 +46,11 @@ const app = new SlackApp({
     startLazyListenerAfterAck: true
 });
 
+// setup scheduler
+const scheduler = new Scheduler(app.client);
+await scheduler.loadJobsFromFile("data/jobs.json");
+console.log(`🕰️  Scheduler loaded ${scheduler.listJobs().length} jobs`);
+
 // listen for new members joining the market - town square channels
 app.event('member_joined_channel', async ({ context, payload }) => {
     for (const [key, value] of Object.entries(channels.joinMonitor)) {
@@ -106,9 +111,6 @@ export default {
     },
 };
 
-// setup scheduler
-const scheduler = new Scheduler(app.client);
-
 (async () => {
     try {
         console.log('⚡️ Bolt app is running!');
@@ -165,10 +167,8 @@ const scheduler = new Scheduler(app.client);
 
 process.on('SIGINT', async function () {
     console.log('Caught interrupt signal');
-    // list all jobs
-    console.log("Listing all jobs");
-    console.log(scheduler.listJobs().length);
 
     await scheduler.stopAllJobs();
+    await scheduler.saveJobsToFile("data/jobs.json");
     process.exit();
 });
