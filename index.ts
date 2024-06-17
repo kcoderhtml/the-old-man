@@ -1,6 +1,7 @@
 import { SlackApp } from "slack-edge";
 import { Elysia } from 'elysia';
 import { welcome } from './welcome';
+import { checkAirtableAndWelcomeIfNeeded, getAirtableBase } from './airtable';
 
 import { Scheduler } from "./scheduler";
 
@@ -55,6 +56,13 @@ console.log(`🕰️  Scheduler loaded ${scheduler.listJobs().length} jobs`);
 setInterval(async () => {
     await scheduler.saveJobsToFile("data/jobs.json");
 }, 300000);
+
+
+const base = await getAirtableBase();
+// watch for new users joining in the airtable
+setInterval(async () => {
+    await checkAirtableAndWelcomeIfNeeded(app.client, scheduler, welcome, base);
+}, 60000);
 
 // listen for new members joining the market - town square channels
 app.event('member_joined_channel', async ({ context, payload }) => {
