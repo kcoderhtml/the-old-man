@@ -17,3 +17,6 @@ services:
       - BAG_APP_ID=xx
       - BAG_COMMAND_PASSWORD=xxxxxx
       - NODE_ENV=production
+    init: true
+    volumes:
+      - ./data:/usr/src/app/data
