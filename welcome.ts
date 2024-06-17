@@ -112,6 +112,51 @@ export async function onboardingStep(userID: string, client: SlackAPIClient, sch
     }
 
     if (onboarding[step].pause !== undefined && onboarding[step].pause === true) {
+        // check whether waitTime is defined
+        if (onboarding[step].waitTime !== undefined) {
+            // parse the waitTime from the format "1m1h1d" to milliseconds
+            const waitTime = onboarding[step].waitTime === "" ? "1d" : onboarding[step].waitTime;
+            let milliseconds: number = 0;
+            // split at the letters to get the number and the unit
+            const time = waitTime.match(/\d+\w/g);
+            // check if time is not null
+            if (time !== null) {
+                // iterate over the time array
+                for (const t of time) {
+                    // get the number and the unit
+                    const number = parseInt(t.match(/\d+/)![0]);
+                    const unit = t.match(/\w+/)![0][1];
+
+                    // add the milliseconds to the total
+                    switch (unit) {
+                        case "s":
+                            milliseconds += number * 1000;
+                            break;
+                        case "m":
+                            milliseconds += number * 60000;
+                            break;
+                        case "h":
+                            milliseconds += number * 3600000;
+                            break;
+                        case "d":
+                            milliseconds += number * 86400000;
+                            break;
+                        default:
+                            // handle the case when the unit is not recognized
+                            console.log(`❌ Invalid time unit: ${unit}`);
+                            milliseconds = 86400000
+                            break;
+                    }
+                }
+            } else {
+                console.log(`❌ Invalid time string: ${waitTime}`);
+                milliseconds = 86400000
+            }
+
+            scheduler.addJob(async () => {
+                await onboardingStep(userID, client, scheduler, true);
+            }, milliseconds, userID);
+        }
         return
     }
 

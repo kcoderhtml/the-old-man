@@ -35,7 +35,8 @@
 			"Clam",
 			"Grass Seeds"
 		],
-		"pause": true
+		"pause": true,
+		"waitTime": "1d"
 	},
 	"itemCommand": {
 		"randomReplace": [
@@ -91,7 +92,8 @@
 		],
 		"text": ">The old man appears again, kicking up dust as he shuffles down the road. He carefully places {{replace}} on your doorstep. You are suddently overcome with the urge to type `/item {{replace}}` to learn about this curious object.",
 		"next": "tradeCommand",
-		"pause": true
+		"pause": true,
+		"waitTime": "1d"
 	},
 	"tradeCommand": {
 		"randomReplace": [
@@ -137,7 +139,8 @@
 		],
 		"text": ">This time the old man is tap-dancing. He executes a perfect one-armed handstand on your doorstep, and {{replace}} falls out of his pocket. What a strange person. He moonwalks away, screaming at the top of his lungs: \"You can trade! Use the `/trade` command! This is a very important skill!!!\"\n\n>You feel a sudden urge to go to <#C06GA0PSXC5> and trade with others.",
 		"next": "giveCommand",
-		"pause": true
+		"pause": true,
+		"waitTime": "1d"
 	},
 	"giveCommand": {
 		"randomReplace": [
@@ -173,7 +176,8 @@
 		],
 		"text": ">The old man is back. He seems a little less spry this time, huffing and puffing between skips and jumps. He drops {{replace}} outside your door, darts away gleefully, and shouts \"The `/give` command lets you give stuff! Isn't that neat?? Get out there and do some altruism!\" You are filled with the desire to do an altruistic act.",
 		"next": "pocketMoney",
-		"pause": true
+		"pause": true,
+		"waitTime": "2d"
 	},
 	"pocketMoney": {
 		"randomReplace": [
@@ -269,7 +273,8 @@
 		],
 		"text": ">You look longingly out the window. You haven't seen your mysterious friend for some time now. You stand on your doorstep, thinking how you miss that funny old chap... life feels strangely empty without his antics. But what's that? A tuft of white hair peeks over the horizon. You see a silhouetted figure begin to rotate, spinning faster and faster, before releasing something with the perfect form of an Olympic-level hammer throw. Time stands still as you fixate on the object sailing toward you. The arc it makes through the atmosphere is beautiful. Poetic. Like a rainbow. And then, it hits you. Literally, you get beaned in the head by a rather heavy bag. Good thing you were wearing your favorite 1951 standard-issue US Army Korean War helmet. WWII surplus, to get into the mood for watching a little MASH this morning. You pick the bag up, feeling that it's full of :-gp:, and look up to see the old man is gone once again. But you hear a cry from over the hill: \"I almost forgot, a little pocket money to stimulate the economyyyyyyyy!\" You open the bag and count the :-gp:. There are 85 of them. You feel a sudden urge to go and start a business. Or maybe just spend it all on {{replace}}.",
 		"next": "useCommand",
-		"pause": true
+		"pause": true,
+		"waitTime": "3d"
 	},
 	"useCommand": {
 		"randomReplace": [
@@ -379,9 +384,10 @@
 				]
 			}
 		],
-		"text": ">It's been weeks since you saw MOM. Not, like, your mother. She visited yesterday. The MOM in question is the Mysterious Old Man. Your mind still occasionally drifts to your eccentric friend, if you could even call him that. But mostly, at this point, you've moved on.\n\n>...and then you hear him. Or rather, you hear a bagpipe. Accompanied by the unmistakable sound of a WWII surplus M4A3E8 Sherman tank trundling down the road. And there's only one person who would do a thing like that.\n\n>Your suspicions are confirmed when you pull the curtain back and witness the amusing sight of the old man attempting to untangle his beard from the drone pipes without stopping either the music or the tank. He pulls up in front of your house, cuts the engine, stashes his bagpipe and hops out. You greet him at the door, and before you can say anything he shouts:\n\n>YOU! You there! I've come to bring you something: this lovely {{replace}}! I highly recommend you go to {{replace}} and run `/use {{replace}}`. You may be surprised and delighted by the rewards!!\n\n>This man has terrible breath. You open your mouth to respond, but he's already running back to his massive vehicle. The music starts back up and all you can do is watch him slowly advance to the next house down the road.\n\n>Actually, that's not all you can do. You could also go to {{replace}} right now and run `/use {{replace}}`.",
+		"text": ">It feels like its been ages since you last saw MOM. Not, like, your mother. She visited yesterday. The MOM in question is the Mysterious Old Man. Your mind still occasionally drifts to your eccentric friend, if you could even call him that. But mostly, at this point, you've moved on.\n\n>...and then you hear him. Or rather, you hear a bagpipe. Accompanied by the unmistakable sound of a WWII surplus M4A3E8 Sherman tank trundling down the road. And there's only one person who would do a thing like that.\n\n>Your suspicions are confirmed when you pull the curtain back and witness the amusing sight of the old man attempting to untangle his beard from the drone pipes without stopping either the music or the tank. He pulls up in front of your house, cuts the engine, stashes his bagpipe and hops out. You greet him at the door, and before you can say anything he shouts:\n\n>YOU! You there! I've come to bring you something: this lovely {{replace}}! I highly recommend you go to {{replace}} and run `/use {{replace}}`. You may be surprised and delighted by the rewards!!\n\n>This man has terrible breath. You open your mouth to respond, but he's already running back to his massive vehicle. The music starts back up and all you can do is watch him slowly advance to the next house down the road.\n\n>Actually, that's not all you can do. You could also go to {{replace}} right now and run `/use {{replace}}`.",
 		"next": "craftCommand",
-		"pause": true
+		"pause": true,
+		"waitTime": "1d"
 	},
 	"craftCommand": {
 		"randomReplace": [
@@ -825,7 +831,6 @@
 			}
 		],
 		"text": ">It's morning. You can tell because there are morning sounds. You yawn as you raise your eye mask, but instead of fresh air and sunlight your mouth and eyeballs are suddenly filled with beard. \"Wake up sleepyhead!\" says the Mysterious Old Man, his nose literally an inch from your forehead.\n\n>You're too surprise to be disgusted by the sensation of grimy white hair all up in your face holes. The old man withdraws and takes a seat at the foot of the bed and starts rummaging in a leather fanny pack strapped to his waist. He is uncharacteristically calm and it's freaking you out.\n\n>You pull a long scraggly beard hair out of your mouth, watching as he carefully places random crap all over your freshly-laundered sheets. \"Today is the day you learn to craft. I took a look in your bag, and I am leaving you with everything you need to craft {{replace}}, plus a few extraneous goodies. Figuring out the exact combination of ingredients required is a fun little exercise left to the reader. Use `/craft` to get started. Goodbye.\n\n>You stare blankly as he walks backward out of your bedroom without ever breaking eye contact. Your front door creaks shut and your eyes fall to the stuff on your bed.\n\n>So then, some subset of {{replace}}, can be combined to make {{replace}}. You might as well run `/craft` and get started then.",
-		"next": "completed",
-		"pause": true
+		"next": "completed"
 	}
 }
