@@ -131,9 +131,10 @@ export class Scheduler {
         const data: JobData[] = await Bun.file(filepath).json();
 
         this.jobs = data.map((jobData) => {
+            const delay = Math.max((new Date(jobData.date)).getTime() - Date.now(), 1000);
             const job = new Job(() => {
                 onboardingStep(jobData.userID, this.slackClient!, this);
-            }, (new Date(jobData.date)).getTime() - Date.now(), jobData.userID);
+            }, delay, jobData.userID);
             return job;
         });
     }

@@ -111,7 +111,7 @@ export async function onboardingStep(userID: string, client: SlackAPIClient, sch
         await updateUserMetadata(userID, JSON.stringify({ onboarding: "started", onboardingStep: step }));
     }
 
-    if (onboarding[step].pause !== undefined && onboarding[step].pause === true) {
+    if (onboarding[step].pause !== undefined && onboarding[step].pause === true && process.env.NODE_ENV !== undefined) {
         // check whether waitTime is defined
         if (onboarding[step].waitTime !== undefined) {
             // parse the waitTime from the format "1m1h1d" to milliseconds
@@ -162,7 +162,7 @@ export async function onboardingStep(userID: string, client: SlackAPIClient, sch
 
     scheduler.addJob(async () => {
         await onboardingStep(userID, client, scheduler, false, onboarding[step].next);
-    }, 10000, userID);
+    }, 4000, userID);
 }
 
 async function getUserMetadata(userID: string) {
