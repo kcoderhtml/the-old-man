@@ -36,7 +36,8 @@ RUN chown -R bun:bun data
 
 # pull the items.yaml file from the bag
 USER bun
-RUN cd data && wget https://raw.githubusercontent.com/rivques/bag-manifest/production/items.yaml && chown -R bun:bun items.yaml
+RUN cd data && wget https://raw.githubusercontent.com/rivques/bag-manifest/production/items.yaml && chown -R bun:bun items.yaml && cd ..
+RUN touch data/jobs.json && chown -R bun:bun data/jobs.json && cd ..
 
 # run the app
 USER bun
