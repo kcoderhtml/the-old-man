@@ -172,3 +172,11 @@ process.on('SIGINT', async function () {
     await scheduler.saveJobsToFile("data/jobs.json");
     process.exit();
 });
+
+process.on('SIGTERM', async function () {
+    console.log('Caught terminate signal');
+
+    await scheduler.stopAllJobs();
+    await scheduler.saveJobsToFile("data/jobs.json");
+    process.exit();
+});
