@@ -127,15 +127,23 @@ export class Scheduler {
 
     // load jobs from a file
     async loadJobsFromFile(filepath: string): Promise<void> {
-        // load jobs from a file
-        const data: JobData[] = await Bun.file(filepath).json();
+        try {
+            // load jobs from a file
+            const data: JobData[] = await Bun.file(filepath).json();
 
-        this.jobs = data.map((jobData) => {
-            const delay = Math.max((new Date(jobData.date)).getTime() - Date.now(), 1000);
-            const job = new Job(() => {
-                onboardingStep(jobData.userID, this.slackClient!, this);
-            }, delay, jobData.userID);
-            return job;
-        });
+            this.jobs = data.map((jobData) => {
+                const delay = Math.max((new Date(jobData.date)).getTime() - Date.now(), 1000);
+                const job = new Job(() => {
+                    onboardingStep(jobData.userID, this.slackClient!, this);
+                }, delay, jobData.userID);
+                return job;
+            });
+        } catch (error) {
+            if (typeof Error) {
+                console.error("No jobs file found");
+            } else {
+                console.error(error);
+            }
+        }
     }
 }
