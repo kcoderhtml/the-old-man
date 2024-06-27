@@ -61,11 +61,7 @@ setInterval(async () => {
 const base = await getAirtableBase();
 // watch for new users joining in the airtable
 setInterval(async () => {
-    try {
-        await checkAirtableAndWelcomeIfNeeded(app.client, scheduler, base);
-    } catch (error) {
-        console.error(error);
-    }
+    await checkAirtableAndWelcomeIfNeeded(app.client, scheduler, welcome, base);
 }, 60000);
 
 // listen for new members joining the market - town square channels
