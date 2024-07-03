@@ -182,96 +182,96 @@
 	"pocketMoney": {
 		"randomReplace": [
 			{
-				"text": ["a stock pile of :-glue:"],
+				"text": ["a stock pile of :-lumber:"],
 				"give": [
 					{
 						"name": "gp",
-						"quantity": 85
+						"quantity": 585
 					}
 				]
 			},
 
 			{
-				"text": [":-shurt:'s"],
+				"text": [":-shovel:'s"],
 				"give": [
 					{
 						"name": "gp",
-						"quantity": 85
+						"quantity": 585
 					}
 				]
 			},
 
 			{
-				"text": ["a pair of :-kamina-shades:"],
+				"text": ["a :-saw:"],
 				"give": [
 					{
 						"name": "gp",
-						"quantity": 85
+						"quantity": 585
 					}
 				]
 			},
 
 			{
-				"text": ["a stack of :-bread:"],
+				"text": ["a stack of :-log:s"],
 				"give": [
 					{
 						"name": "gp",
-						"quantity": 85
+						"quantity": 585
 					}
 				]
 			},
 
 			{
-				"text": ["a good set of :-socks:"],
+				"text": ["a good set of :-pickaxe:s"],
 				"give": [
 					{
 						"name": "gp",
-						"quantity": 85
+						"quantity": 585
 					}
 				]
 			},
 
 			{
-				"text": ["a :-top-hat: or two"],
+				"text": ["a :-scythe: or two"],
 				"give": [
 					{
 						"name": "gp",
-						"quantity": 85
+						"quantity": 585
 					}
 				]
 			},
 
 			{
-				"text": ["a single :-fish-hat:"],
+				"text": ["a :-rock:"],
 				"give": [
 					{
 						"name": "gp",
-						"quantity": 85
+						"quantity": 385
 					}
 				]
 			},
 
 			{
-				"text": ["one single beautiful :-saphire:"],
+				"text": ["one single beautiful :-diamond:"],
 				"give": [
 					{
 						"name": "gp",
-						"quantity": 85
+						"quantity": 585
 					}
 				]
 			},
 
 			{
-				"text": ["a piece of :-tanzanite:"],
+				"text": ["a piece of :-coal:"],
 				"give": [
 					{
 						"name": "gp",
-						"quantity": 85
+						"quantity": 585
 					}
 				]
 			}
 		],
-		"text": ">You look longingly out the window. You haven't seen your mysterious friend for some time now. You stand on your doorstep, thinking how you miss that funny old chap... life feels strangely empty without his antics. But what's that? A tuft of white hair peeks over the horizon. You see a silhouetted figure begin to rotate, spinning faster and faster, before releasing something with the perfect form of an Olympic-level hammer throw. Time stands still as you fixate on the object sailing toward you. The arc it makes through the atmosphere is beautiful. Poetic. Like a rainbow. And then, it hits you. Literally, you get beaned in the head by a rather heavy bag. Good thing you were wearing your favorite 1951 standard-issue US Army Korean War helmet. WWII surplus, to get into the mood for watching a little MASH this morning. You pick the bag up, feeling that it's full of :-gp:, and look up to see the old man is gone once again. But you hear a cry from over the hill: \"I almost forgot, a little pocket money to stimulate the economyyyyyyyy!\" You open the bag and count the :-gp:. There are 85 of them. You feel a sudden urge to go and start a business. Or maybe just spend it all on {{replace}}.",
+		"text": ">You look longingly out the window. You haven't seen your mysterious friend for some time now. You stand on your doorstep, thinking how you miss that funny old chap... life feels strangely empty without his antics. But what's that? A tuft of white hair peeks over the horizon. You see a silhouetted figure begin to rotate, spinning faster and faster, before releasing something with the perfect form of an Olympic-level hammer throw. Time stands still as you fixate on the object sailing toward you. The arc it makes through the atmosphere is beautiful. Poetic. Like a rainbow. And then, it hits you. Literally, you get beaned in the head by a rather heavy bag. You pick the bag up, feeling that it's full of :-gp:, and look up to see the old man is gone once again. But you hear a cry from over the hill: \"I almost forgot, a little pocket money to stimulate the economyyyyyyyy! Go get yourself something nice from the <#C06Q8G95TQU>.\" You open the bag and count the :-gp:. There are 585 of them. You feel a sudden urge to go buy {{replace}}, or maybe to save a bit.",
 		"next": "useCommand",
 		"pause": true,
 		"waitTime": "3d"
